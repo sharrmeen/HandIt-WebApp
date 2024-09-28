@@ -22,5 +22,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("",index,name="index"),
     path("all_logins",all_logins,name="all_logins"),
+<<<<<<< HEAD
     path("", include(("donation.urls", "donation"), "donation"))
+=======
+    path("donor_login",donor_login,name="donor_login")
+>>>>>>> b46780d8580df962ea8e1d8cebea081daf921e1b
 ]

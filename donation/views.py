@@ -11,6 +11,7 @@ def index(request):
 def all_logins(request):
     return render(request,'all_logins.html')
 
+<<<<<<< HEAD
 @login_required
 def home(request):
  return render(request, "home.html", {})
@@ -24,3 +25,7 @@ def authView(request):
  else:
   form = UserCreationForm()
  return render(request, "registration/signup.html", {"form": form})
+=======
+def donor_login(request):
+    return render(request,'donor_login.html')
+>>>>>>> b46780d8580df962ea8e1d8cebea081daf921e1b
