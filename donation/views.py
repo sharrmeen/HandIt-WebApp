@@ -7,3 +7,7 @@ def index(request):
 
 def all_logins(request):
     return render(request,'all_logins.html')
+
+
+def donor_login(request):
+    return render(request,'donor_login.html')
