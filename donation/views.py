@@ -22,14 +22,14 @@ def donor_reg(request):
         fn = request.POST['first_name']
         ln = request.POST['last_name']
         pwd = request.POST['pwd']
-        address = request.POST['address']
         contact = request.POST['contact_number']
         em = request.POST['email']
-        Userpic = request.FILES['profile_pic']
+        address = request.POST['address']
+        userpic = request.FILES['profile_pic']
 
         try:
-            user = User.objects.create_User(first_name=fn,last_name=ln,username=em,password=pwd)
-            Donor.objects.create(user=User,contact=contact,Userpic=userpic,address=address)
+            user = User.objects.create_user(first_name=fn,last_name=ln,username=em,password=pwd)
+            Donor.objects.create(user=user,contact=contact,Userpic=userpic,address=address)
             error = "no"
         except:
             error = "yes"

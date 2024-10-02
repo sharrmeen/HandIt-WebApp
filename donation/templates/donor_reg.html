@@ -90,15 +90,21 @@ gtag('config', 'UA-23581568-13');
                     <div data-range="41-60" class="segment"><span></span></div>
                     <div data-range="61-80" class="segment"><span></span></div>
                     <div data-range="81-100" class="segment"><span></span></div>
+                </div>              
                 </div>
-                { % if error == "no" %}
+
+                {% if error == "no" %}
                 <script>
                     alert('Signup Successful');
-                    window.location=('{% url 'donor_login' %}');
+                    window.location=("{% url 'donor_login' %}");
                 </script>
+                {% endif %}
 
-                { % if error == "yes" %}
+                {% if error == "yes" %}
                 <script>
                     alert('Something went wrong ,Try Again...');
-                </script>
-            </div></body><!-- This templates was made by Colorlib (https://colorlib.com) --></html>
+                </script> 
+                {% endif %}       
+</body>
+
+</html>
