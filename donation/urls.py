@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 from donation.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -9,5 +11,4 @@ urlpatterns = [
     path("donor_login",donor_login,name="donor_login"),
     path("ngo_login",ngo_login,name="ngo_login"),
     path("donor_reg",donor_reg,name="donor_reg"),
-    
-]
+]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import *
 
 # Create your views here.
 
@@ -16,4 +17,20 @@ def ngo_login(request):
     return render(request,'ngo_login.html')
 
 def donor_reg(request):
-    return render(request,'donor_reg.html')
+    error = ""
+    if request.method == "POST":
+        fn = request.POST['first_name']
+        ln = request.POST['last_name']
+        pwd = request.POST['pwd']
+        address = request.POST['address']
+        contact = request.POST['contact_number']
+        em = request.POST['email']
+        Userpic = request.FILES['profile_pic']
+
+        try:
+            user = User.objects.create_User(first_name=fn,last_name=ln,username=em,password=pwd)
+            Donor.objects.create(user=User,contact=contact,Userpic=userpic,address=address)
+            error = "no"
+        except:
+            error = "yes"
+    return render(request,'donor_reg.html', locals())
