@@ -1,0 +1,104 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>RegistrationForm_v6 by Colorlib</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="../static/css/registration.css">
+<meta name="robots" content="noindex, follow">
+<script>
+    function checkPassword(){
+        if(document.signup.pwd.value!=document.signup.cpwd.value){
+            alert("Password does not match")
+            document.signup.cpwd.focus();
+            return false;
+            
+        }
+        return true;
+    }
+</script>
+<script defer="" referrerpolicy="origin" src="/cdn-cgi/zaraz/s.js?z=JTdCJTIyZXhlY3V0ZWQlMjIlM0ElNUIlNUQlMkMlMjJ0JTIyJTNBJTIyUmVnaXN0cmF0aW9uRm9ybV92NiUyMGJ5JTIwQ29sb3JsaWIlMjIlMkMlMjJ4JTIyJTNBMC45OTc1NjE0NTEzODQxODE1JTJDJTIydyUyMiUzQTE1MzYlMkMlMjJoJTIyJTNBODY0JTJDJTIyaiUyMiUzQTczMCUyQyUyMmUlMjIlM0ExNTM2JTJDJTIybCUyMiUzQSUyMmh0dHBzJTNBJTJGJTJGY29sb3JsaWIuY29tJTJGZXRjJTJGcmVnZm9ybSUyRmNvbG9ybGliLXJlZ2Zvcm0tMjIlMkYlMjIlMkMlMjJyJTIyJTNBJTIyaHR0cHMlM0ElMkYlMkZjb2xvcmxpYi5jb20lMkZ3cCUyRnRlbXBsYXRlJTJGY29sb3JsaWItcmVnZm9ybS0yMiUyRiUyMiUyQyUyMmslMjIlM0EyNCUyQyUyMm4lMjIlM0ElMjJVVEYtOCUyMiUyQyUyMm8lMjIlM0EtMzMwJTJDJTIycSUyMiUzQSU1QiU3QiUyMm0lMjIlM0ElMjJzZXQlMjIlMkMlMjJhJTIyJTNBJTVCJTIyMCUyMiUyQyUyMmNvbmZpZyUyMiUyQyU3QiUyMnNjb3BlJTIyJTNBJTIycGFnZSUyMiU3RCU1RCU3RCUyQyU3QiUyMm0lMjIlM0ElMjJzZXQlMjIlMkMlMjJhJTIyJTNBJTVCJTIyMSUyMiUyQyUyMlVBLTIzNTgxNTY4LTEzJTIyJTJDJTdCJTIyc2NvcGUlMjIlM0ElMjJwYWdlJTIyJTdEJTVEJTdEJTVEJTdE"></script><script nonce="396d214a-30cb-44da-8e30-88e367f00296">try{(function(w,d){!function(bk,bl,bm,bn){if(bk.zaraz)console.error("zaraz is loaded twice");else{bk[bm]=bk[bm]||{};bk[bm].executed=[];bk.zaraz={deferred:[],listeners:[]};bk.zaraz._v="5807";bk.zaraz._n="396d214a-30cb-44da-8e30-88e367f00296";bk.zaraz.q=[];bk.zaraz._f=function(bo){return async function(){var bp=Array.prototype.slice.call(arguments);bk.zaraz.q.push({m:bo,a:bp})}};for(const bq of["track","set","debug"])bk.zaraz[bq]=bk.zaraz._f(bq);bk.zaraz.init=()=>{var br=bl.getElementsByTagName(bn)[0],bs=bl.createElement(bn),bt=bl.getElementsByTagName("title")[0];bt&&(bk[bm].t=bl.getElementsByTagName("title")[0].text);bk[bm].x=Math.random();bk[bm].w=bk.screen.width;bk[bm].h=bk.screen.height;bk[bm].j=bk.innerHeight;bk[bm].e=bk.innerWidth;bk[bm].l=bk.location.href;bk[bm].r=bl.referrer;bk[bm].k=bk.screen.colorDepth;bk[bm].n=bl.characterSet;bk[bm].o=(new Date).getTimezoneOffset();if(bk.dataLayer)for(const bx of Object.entries(Object.entries(dataLayer).reduce(((by,bz)=>({...by[1],...bz[1]})),{})))zaraz.set(bx[0],bx[1],{scope:"page"});bk[bm].q=[];for(;bk.zaraz.q.length;){const bA=bk.zaraz.q.shift();bk[bm].q.push(bA)}bs.defer=!0;for(const bB of[localStorage,sessionStorage])Object.keys(bB||{}).filter((bD=>bD.startsWith("_zaraz_"))).forEach((bC=>{try{bk[bm]["z_"+bC.slice(7)]=JSON.parse(bB.getItem(bC))}catch{bk[bm]["z_"+bC.slice(7)]=bB.getItem(bC)}}));bs.referrerPolicy="origin";bs.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(bk[bm])));br.parentNode.insertBefore(bs,br)};["complete","interactive"].includes(bl.readyState)?zaraz.init():bk.addEventListener("DOMContentLoaded",zaraz.init)}}(w,d,"zarazData","script");window.zaraz._p=async j=>new Promise((k=>{if(j){j.e&&j.e.forEach((l=>{try{const m=d.querySelector("script[nonce]"),n=m?.nonce||m?.getAttribute("nonce"),o=d.createElement("script");n&&(o.nonce=n);o.innerHTML=l;o.onload=()=>{d.head.removeChild(o)};d.head.appendChild(o)}catch(p){console.error(`Error executing script: ${l}\n`,p)}}));Promise.allSettled((j.f||[]).map((q=>fetch(q[0],q[1]))))}k()}));zaraz._p({"e":["(function(w,d){})(window,document)"]});})(window,document)}catch(e){throw fetch("/cdn-cgi/zaraz/t"),e;};</script><script>(function(w,d){})(window,document)</script>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="inner">
+            <div class="image-holder">
+                <img src="../static/images/pexels-cottonbro-6591155 (2).jpg" alt="">
+            </div>
+            <form action="{% url 'donor_reg' %}" method="post" enctype="multipart/form-data" name="signup" onsubmit="return checkPassword()">
+                {% csrf_token %}
+                <h3 style="color: #4e4d4ddc;">Donor Registration</h3>
+                <div class="form-row">
+                    <input type="text" class="form-control" placeholder="First Name" name="first_name">
+                    <input type="text" class="form-control" placeholder="Last Name" name="last_name">
+                    
+                </div>
+                <div class="form-row">
+                    <input type="text" name="pwd" class="form-control" placeholder="Password">
+                    <input type="text" name="cpwd" class="form-control" placeholder="Confirm Password">
+                </div>
+                <div class="form-row">
+                    <input type="text" class="form-control" placeholder="Contact Number" name="contact_number">
+                    <input type="text" class="form-control" placeholder="E-Mail" name="email">
+                </div>
+                <div class="form-row">
+                    
+                    <input type="text" class="form-control" placeholder="Address" style="height: 100px; width:600px;" name="address">   
+                    <label for="profile-pic">Profile Picture:</label> 
+                    <input type="file" class="form-control" id="profile-pic"  style="height: 60px;" name="profile_pic" accept="image/*" required >
+                </div>
+                
+                <button>Submit
+                    <i class="zmdi zmdi-long-arrow-right"></i>
+                </button>
+            </form>
+            
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/main.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-23581568-13');
+</script>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;8cc49919e8bd3a28&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true}},&quot;version&quot;:&quot;2024.8.0&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;}" crossorigin="anonymous"></script>
+
+<audio class="audio-output" style="display: none;"></audio><div id="volume-booster-visusalizer">
+                <div class="sound">
+                    <div class="sound-icon"></div>
+                    <div class="sound-wave sound-wave_one"></div>
+                    <div class="sound-wave sound-wave_two"></div>
+                    <div class="sound-wave sound-wave_three"></div>
+                </div>
+                <div class="segments-box">
+                    <div data-range="1-20" class="segment"><span></span></div>
+                    <div data-range="21-40" class="segment"><span></span></div>
+                    <div data-range="41-60" class="segment"><span></span></div>
+                    <div data-range="61-80" class="segment"><span></span></div>
+                    <div data-range="81-100" class="segment"><span></span></div>
+                </div>
+                { % if error == "no" %}
+                <script>
+                    alert('Signup Successful');
+                    window.location=('{% url 'donor_login' %}');
+                </script>
+
+                { % if error == "yes" %}
+                <script>
+                    alert('Something went wrong ,Try Again...');
+                </script>
+            </div></body><!-- This templates was made by Colorlib (https://colorlib.com) --></html>
