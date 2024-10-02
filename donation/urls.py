@@ -8,5 +8,6 @@ urlpatterns = [
     path("all_logins",all_logins,name="all_logins"),
     path("donor_login",donor_login,name="donor_login"),
     path("ngo_login",ngo_login,name="ngo_login"),
+    path("donor_reg",donor_reg,name="donor_reg"),
     
 ]

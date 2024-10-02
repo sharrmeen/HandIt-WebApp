@@ -14,3 +14,6 @@ def donor_login(request):
 
 def ngo_login(request):
     return render(request,'ngo_login.html')
+
+def donor_reg(request):
+    return render(request,'donor_reg.html')
