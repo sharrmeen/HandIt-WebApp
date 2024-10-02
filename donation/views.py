@@ -17,7 +17,7 @@ def ngo_login(request):
     return render(request,'ngo_login.html')
 
 def donor_reg(request):
-    error = ""
+    error=""
     if request.method == "POST":
         fn = request.POST['first_name']
         ln = request.POST['last_name']
@@ -29,7 +29,7 @@ def donor_reg(request):
 
         try:
             user = User.objects.create_user(first_name=fn,last_name=ln,username=em,password=pwd)
-            Donor.objects.create(user=user,contact=contact,Userpic=userpic,address=address)
+            Donor.objects.create(user=user,contact=contact,userpic=userpic,address=address)
             error = "no"
         except:
             error = "yes"
