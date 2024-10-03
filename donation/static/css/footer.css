@@ -1,200 +1,99 @@
-/* Footer General Styling */
-.footer {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Adjustments for better visibility */
-.nav-item:hover {
-    text-decoration: underline;
-}
-
-/* Hover and Focus effects on Subscribe Button */
-.subscribe-button:hover,
-.subscribe-button:focus {
-    background-color: #ddd;
-    transition: background-color 0.3s ease;
-}
-
-/* Footer Background */
-.footer-bg {
-    /* Add your custom image as the background */
-    background-image: url('..donation/static/css/images/volunteers.jpeg'); /* Adjusted the path to match typical directory structure */
-    
-    /* Ensure the background covers the whole area */
-    background-size: cover;
-    background-position: center;
-    
-    /* Optional: Add a fallback background color in case the image fails to load */
- /* Optional, acts as a fallback */
-
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 96px 70px;
-}
-
-
-/* Footer Content with Flexbox for Alignment */
-.footer-content {
-    display: flex;
-    width: 100%;
-    max-width: 1280px;
-    gap: 20px;
-    justify-content: space-between;
-    align-items: start; /* Align the sections at the top for consistency */
-    flex-wrap: wrap; /* Ensure it wraps on smaller screens */
-}
-
-/* Footer Brand Section */
-.footer-brand {
-    display: flex;
-    flex-direction: column;
-    color: #fff;
-    line-height: 1.6;
-}
-
-.brand-info {
-    display: flex;
-    gap: 20px;
-    font-size: 16px;
-    font-weight: 700;
-    justify-content: space-between;
-}
-
-.brand-logo {
-    aspect-ratio: 5;
-    object-fit: contain;
-    object-position: center;
-    width: 110px;
-    max-width: 100%;
-}
-
-/* Navigation Links in Footer */
-.footer-nav {
-    align-self: end;
-    display: flex;
-    margin-top: 24px;
-    flex-direction: column;
-    align-items: start;
-    font-size: 14px;
-    font-weight: 400;
-}
-
-.nav-item {
-    margin-top: 24px;
-    color: #fff;
-    text-decoration: none;
-}
-
-/* More Section */
-.footer-more,
-.footer-connect {
-    display: flex;
-    flex-direction: column;
-    align-items: start; /* Align items consistently */
-    font-size: 14px;
-    color: #fff;
-    font-weight: 400;
-    line-height: 1.6;
-}
-
-.section-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #fff;
-}
-
-/* Subscribe Section */
-.footer-subscribe {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%; /* Ensure it doesn't exceed available space */
-}
-
-.subscribe-title {
-    color: #fff;
-    font-size: 32px; /* Reduce font size for better visibility */
-    font-weight: 700;
-    line-height: 44px;
-    width: 100%;
-    margin-bottom: 16px;
-}
-
-.subscribe-form {
-    display: flex;
-    margin-top: 16px;
-    width: 100%;
-    font-size: 16px;
-}
-
-.subscribe-input {
-    border-radius: 4px;
-    z-index: 10;
-    margin-right: 10px; /* Adjust spacing between input and button */
-    color: rgba(235, 240, 249, 0.3);
-    font-weight: 400;
-    flex-grow: 1;
-    padding: 16px 24px;
-    border: 1px solid rgba(235, 240, 249, 0.3);
-}
-
-.subscribe-button {
-    border-radius: 4px;
-    background-color: #fff;
-    color: #1d2130;
-    font-weight: 500;
-    padding: 16px 32px;
-    border: none;
-    cursor: pointer;
-}
-
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Ubuntu&display=swap');
+*{
     padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+footer .container{
+    background: linear-gradient(135deg, #003923, #009F62);;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 991px) {
-    .footer-bg {
-        padding: 48px 20px;
-    }
+.row{
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 100px;
+}
+.footer-col ul{
+    list-style: none;
+}
 
-    .footer-content {
+.footer-col h4{
+    color: white;
+    margin-bottom: 15px; /* Reduced spacing below header */
+    font-size: 25px; /* Adjusted font size */
+    position: relative;
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 0; /* Remove extra margin */
+}
+
+.footer-col h4::before{
+    content: '';
+    width: 100px; /* Adjusted line width */
+    height: 2px;
+    position: absolute;
+    background-color: black;
+    bottom: -8px; /* Slightly adjusted positioning */
+}
+
+.footer-col ul li{
+    padding: 10px 0;
+}
+.footer-col ul li a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    opacity: 0.7;
+    transition: 0.5s;
+}
+.footer-col ul li a:hover{
+    opacity: 1;
+}
+.footer-col input{
+    border: none;
+    width: 250px;
+    height: 50px;
+    display: block;
+    padding-left: 20px;
+    margin: 14px 0;
+}
+
+.footer-col .inputSubmit{
+    padding: 0px 20px;
+    background-color: black;
+    border: none;
+    color: white;
+}
+.col p{
+    color: white;
+}
+.row hr{
+    opacity: 0.7;
+}
+
+.row .socialIcons i{
+    display: inline-block;
+    color: black;
+    font-size: 20px;
+    margin: 0 15px;
+    transition: 0.5s;
+}
+
+.row .socialIcons i:hover{
+    color: black;
+}
+
+@media (max-width: 600px){
+    footer .row{
         flex-direction: column;
-        gap: 40px;
+        padding: 20px 30px;
     }
 
-    .footer-subscribe {
-        max-width: 100%;
+    footer .footer-col ul{
+        margin-left: 20px;
+        margin-bottom: 20px;
     }
-
-    .subscribe-title {
-        font-size: 24px;
-        line-height: 32px;
-    }
-
-    .subscribe-form {
-        flex-direction: column;
-    }
-
-    .subscribe-input {
-        margin-bottom: 16px;
-        margin-right: 0;
-    }
-
-    .subscribe-button {
+    .footer-col input{
         width: 100%;
-        padding: 16px 20px;
     }
 }
