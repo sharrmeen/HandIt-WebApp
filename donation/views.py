@@ -25,7 +25,22 @@ def donor_login(request):
     return render(request,'donor_login.html',locals())
 
 def admin_login(request):
-    return render(request,'admin_login.html')
+    if request.method == 'POST':
+        U = request.POST['username']
+        p = request.POST['pwd']
+        User = authenticate(username=U, password=p)
+        
+        try:
+            if User.is_staff:
+                login(request,User)
+                error = "no"
+                ##return redirect('admin_home')
+            else:
+                error = "yes"
+
+        except:
+            error="yes"
+    return render(request,'admin_login.html',locals())
 
 def ngo_login(request):
     return render(request,'ngo_login.html')
@@ -55,4 +70,9 @@ def donor_home(request):
     if not request.user.is_authenticated:
         return redirect('donor_login')
     return render(request,'donor_home.html')
+
+def admin_home(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    return render(request,'admin_home.html')
 
