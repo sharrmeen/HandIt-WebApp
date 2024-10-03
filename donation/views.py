@@ -13,6 +13,9 @@ def all_logins(request):
 def donor_login(request):
     return render(request,'donor_login.html')
 
+def admin_login(request):
+    return render(request,'admin_login.html')
+
 def ngo_login(request):
     return render(request,'ngo_login.html')
 
@@ -34,3 +37,4 @@ def donor_reg(request):
         except:
             error = "yes"
     return render(request,'donor_reg.html', locals())
+
