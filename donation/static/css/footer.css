@@ -14,11 +14,11 @@ footer .container{
     justify-content: space-between;
     padding: 40px 100px;
 }
-.footer-col ul{
+.footer-col-lg ul{
     list-style: none;
 }
 
-.footer-col h4{
+.footer-col-lg h4{
     color: white;
     margin-bottom: 15px; /* Reduced spacing below header */
     font-size: 25px; /* Adjusted font size */
@@ -27,7 +27,7 @@ footer .container{
     margin-left: 0; /* Remove extra margin */
 }
 
-.footer-col h4::before{
+.footer-col-lg h4::before{
     content: '';
     width: 100px; /* Adjusted line width */
     height: 2px;
@@ -36,20 +36,20 @@ footer .container{
     bottom: -8px; /* Slightly adjusted positioning */
 }
 
-.footer-col ul li{
+.footer-col-lg ul li{
     padding: 10px 0;
 }
-.footer-col ul li a{
+.footer-col-lg ul li a{
     color: white;
     text-decoration: none;
     font-size: 20px;
     opacity: 0.7;
     transition: 0.5s;
 }
-.footer-col ul li a:hover{
+.footer-col-lg ul li a:hover{
     opacity: 1;
 }
-.footer-col input{
+.footer-col-lg input{
     border: none;
     width: 250px;
     height: 50px;
@@ -58,7 +58,7 @@ footer .container{
     margin: 14px 0;
 }
 
-.footer-col .inputSubmit{
+.footer-col-lg .inputSubmit{
     padding: 0px 20px;
     background-color: black;
     border: none;
@@ -89,11 +89,11 @@ footer .container{
         padding: 20px 30px;
     }
 
-    footer .footer-col ul{
+    footer .footer-col-lg ul{
         margin-left: 20px;
         margin-bottom: 20px;
     }
-    .footer-col input{
+    .footer-col-lg input{
         width: 100%;
     }
 }
