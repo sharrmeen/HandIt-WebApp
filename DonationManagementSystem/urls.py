@@ -27,5 +27,6 @@ urlpatterns = [
     path("ngo_login",ngo_login,name="ngo_login"),
     path("admin_login",admin_login,name="admin_login"),
     path("donor_reg",donor_reg,name="donor_reg"),
+    path("donor_home",donor_home,name="donor_home"),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate,login,logout
 from .models import *
 
 # Create your views here.
@@ -11,13 +12,25 @@ def all_logins(request):
 
 
 def donor_login(request):
-    return render(request,'donor_login.html')
+    if request.method == 'POST':
+        U = request.POST['emailid']
+        p = request.POST['pwd']
+        User = authenticate(username=U, password=p)
+        if User:
+            login(request,User)
+            error = "no"
+            ##return redirect('donor_home')
+        else:
+            error = "yes"
+    return render(request,'donor_login.html',locals())
 
 def admin_login(request):
     return render(request,'admin_login.html')
 
 def ngo_login(request):
     return render(request,'ngo_login.html')
+
+
 
 def donor_reg(request):
     error=""
@@ -37,4 +50,9 @@ def donor_reg(request):
         except:
             error = "yes"
     return render(request,'donor_reg.html', locals())
+
+def donor_home(request):
+    if not request.user.is_authenticated:
+        return redirect('donor_login')
+    return render(request,'donor_home.html')
 
