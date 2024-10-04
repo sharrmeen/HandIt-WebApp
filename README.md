@@ -1,0 +1,1 @@
+Hand It connects users with verified NGOs and foundations across categories like food, clothing, monetary donations, and e-waste. Users can log in, browse foundations by category, and contact them directly to facilitate donations. Foundations undergo a secure document verification process .
