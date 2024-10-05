@@ -31,5 +31,6 @@ urlpatterns = [
     path("donor_home",donor_home,name="donor_home"),
     path("admin_home",admin_home,name="admin_home"),
     path("ngo_home",ngo_home,name="ngo_home"),
+    path("new_ngo",new_ngo,name="new_ngo"),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

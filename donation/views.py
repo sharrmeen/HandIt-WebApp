@@ -121,3 +121,8 @@ def admin_home(request):
         return redirect('admin_login')
     return render(request,'admin_home.html')
 
+def new_ngo(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    ngo = NGO.objects.filter(status="Pending")
+    return render(request,'new_ngo.html',locals())
