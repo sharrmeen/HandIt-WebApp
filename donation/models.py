@@ -12,10 +12,10 @@ class Donor(models.Model):
         return self.user.username
 
 class NGO(models.Model):
-    User = models.ForeignKey(User,on_delete=models.CASCADE)
-    contact = models.CharField(null=True, max_length=15)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    contact = models.CharField(null=True, max_length=10)
     address = models.CharField(null=True, max_length=300)
-    #userpic = models.FileField(null=True)
+    userpic = models.FileField(null=True)
     idpic = models.FileField(null=True)
     aboutme = models.CharField(null=True, max_length=300)
     status = models.CharField(null=True, max_length=20)
@@ -23,7 +23,7 @@ class NGO(models.Model):
     adminremark = models.CharField(null=True, max_length=300)
     Updationdate = models.DateField(null=True)
     def __str__(self):
-        return self.User.Username
+        return self.user.username
 
 class DonationArea(models.Model):
     Areaname = models.CharField(null=True, max_length=100)

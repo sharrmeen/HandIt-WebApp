@@ -16,7 +16,7 @@
             <div class="login-info-box">
                 <h2>Have an account?</h2>
                 <p>Sign-in now</p>
-                <label id="label-register" for="log-reg-show">Login</label>
+                <label id="label-register" for="log-reg-show">NGO Login</label>
                 <input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked">
             </div>
                                 
@@ -29,7 +29,7 @@
                                 
             <div class="white-panel">
               <div class="login-show">
-                <h2>Donor Login</h2>
+                <h2>NGO Login</h2>
                 <form method="POST"> 
                     {% csrf_token %} <!-- Important for security if you're using Django -->
                     <input type="email" placeholder="Email" name="emailid" required>
@@ -82,13 +82,19 @@ $('.login-reg-panel input[type="radio"]').on('change', function() {
 {% if error == "no" %}
 <script>
   alert('Logged In Successfully');
-  window.location = ("{% url 'donor_home' %}");
+  window.location = ("{% url 'ngo_home' %}");
 </script>
 {% endif %}
 
 {% if error == "yes" %}
 <script>
   alert('Invalid Login Credentials, Try Again...');
+</script>
+{% endif %}
+
+{% if error == "not" %}
+<script>
+  alert('Your verification status is pending...');
 </script>
 {% endif %}
 

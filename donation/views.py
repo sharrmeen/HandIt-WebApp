@@ -24,6 +24,25 @@ def donor_login(request):
             error = "yes"
     return render(request,'donor_login.html',locals())
 
+def ngo_login(request):
+    if request.method == 'POST':
+        u = request.POST['emailid']
+        p = request.POST['pwd']
+        user = authenticate(username=u, password=p)
+        if user:
+            try:
+                user1=NGO.objects.get(user=user)
+                if user1.status != "Pending":
+                    login(request,User)
+                    error = "no"
+                else:
+                    error="not"
+            except:
+                error="yes"
+        else:
+            error = "yes"
+    return render(request,'ngo_login.html',locals())
+
 def admin_login(request):
     if request.method == 'POST':
         U = request.POST['username']
@@ -41,10 +60,6 @@ def admin_login(request):
         except:
             error="yes"
     return render(request,'admin_login.html',locals())
-
-def ngo_login(request):
-    return render(request,'ngo_login.html')
-
 
 
 def donor_reg(request):
@@ -74,13 +89,15 @@ def ngo_reg(request):
         ln = request.POST['last_name']
         pwd = request.POST['pwd']
         contact = request.POST['contact_number']
-        em = request.POST['email']
-        address = request.POST['address']
+        em = request.POST['email'] 
         userpic = request.FILES['profile_pic']
+        idpic = request.FILES['id_pic']
+        address = request.POST['address']
+        aboutme = request.POST['aboutme']
 
         try:
             user = User.objects.create_user(first_name=fn,last_name=ln,username=em,password=pwd)
-            Donor.objects.create(user=user,contact=contact,userpic=userpic,address=address)
+            NGO.objects.create(user=user,contact=contact,userpic=userpic,idpic=idpic,address=address,aboutme=aboutme,status="Pending")
             error = "no"
         except:
             error = "yes"
@@ -92,6 +109,12 @@ def donor_home(request):
     if not request.user.is_authenticated:
         return redirect('donor_login')
     return render(request,'donor_home.html')
+
+
+def ngo_home(request):
+    if not request.user.is_authenticated:
+        return redirect('ngo_login')
+    return render(request,'ngo_home.html')
 
 def admin_home(request):
     if not request.user.is_authenticated:
