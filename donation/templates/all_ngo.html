@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Table</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Background styling */
+        body {
+                  background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+        }
+
+        /* Styling for table container */
+        .table-container {
+            background-color: rgb(251, 255, 237);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table styling */
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        /* Header styling */
+        h2 {
+            text-align: center;
+            color: #343a40;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="table-container">
+        <h2 class="mb-4"> All NGO Information</h2>
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Sr. No</th>
+                    <th scope="col">NGO Name</th>
+                    <th scope="col">Email ID</th>
+                    <th scope="col">Contact No</th>
+                    <th scope="col">Reg. Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Django Template For Loop to iterate over all NGOs -->
+                {% for i in ngo %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>  <!-- Serial number -->
+                    <td>{{ i.user.first_name }}</td>  <!-- NGO name -->
+                    <td>{{ i.user.username }}</td>    <!-- Email ID -->
+                    <td>{{ i.contact_no }}</td>       <!-- Contact number -->
+                    <td>{{ i.regdate }}</td>          <!-- Registration date -->
+                    <td>{{ i.status }}</td>           <!-- Status -->
+                    <td>
+                        <!-- Action button to view details -->
+                        <a href="{% url 'view_ngodetail' i.id %}" class="btn btn-info btn-sm">View Details</a>
+                     |  {% if i.User.id %}
+                            <a href="{% url 'delete_ngo' i.User.id %}" class="btn btn-info btn-sm" 
+                                onclick="return confirm('Are you sure?')">Delete</a>
+                        {% else %}
+                            <span class="btn btn-info btn-sm disabled">Delete</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center">No NGOs found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Bootstrap JS (Optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

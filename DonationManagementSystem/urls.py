@@ -33,5 +33,8 @@ urlpatterns = [
     path("ngo_home",ngo_home,name="ngo_home"),
     path("new_ngo",new_ngo,name="new_ngo"),
     path("view_ngodetail/<int:pid>",view_ngodetail,name="view_ngodetail"),
+    path("accepted_ngo",accepted_ngo,name="accepted_ngo"),
+    path("all_ngo",all_ngo,name="all_ngo"),
+    path("delete_ngo/<int:pid>",delete_ngo,name="delete_ngo"),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

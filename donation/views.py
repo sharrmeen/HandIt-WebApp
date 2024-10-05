@@ -145,4 +145,20 @@ def view_ngodetail(request,pid):
             error="yes"
     return render(request,'view_ngodetail.html',locals())
 
+def accepted_ngo(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    ngo = NGO.objects.filter(status="Approved")
+    return render(request,'accepted_ngo.html',locals()) 
+
+def all_ngo(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    ngo = NGO.objects.all()
+    return render(request,'all_ngo.html',locals())
+
+def delete_ngo(request,pid):
+    User.objects.get(id=pid).delete()
+    return redirect('all_ngo')
+
 
