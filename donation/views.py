@@ -66,6 +66,28 @@ def donor_reg(request):
             error = "yes"
     return render(request,'donor_reg.html', locals())
 
+
+def ngo_reg(request):
+    error=""
+    if request.method == "POST":
+        fn = request.POST['first_name']
+        ln = request.POST['last_name']
+        pwd = request.POST['pwd']
+        contact = request.POST['contact_number']
+        em = request.POST['email']
+        address = request.POST['address']
+        userpic = request.FILES['profile_pic']
+
+        try:
+            user = User.objects.create_user(first_name=fn,last_name=ln,username=em,password=pwd)
+            Donor.objects.create(user=user,contact=contact,userpic=userpic,address=address)
+            error = "no"
+        except:
+            error = "yes"
+    return render(request,'ngo_reg.html', locals())
+
+
+
 def donor_home(request):
     if not request.user.is_authenticated:
         return redirect('donor_login')
