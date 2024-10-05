@@ -21,7 +21,7 @@ class NGO(models.Model):
     status = models.CharField(null=True, max_length=20)
     regdate = models.DateTimeField(auto_now_add=True)
     adminremark = models.CharField(null=True, max_length=300)
-    Updationdate = models.DateField(null=True)
+    updationdate = models.DateField(null=True)
     def __str__(self):
         return self.user.username
 

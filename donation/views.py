@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from .models import *
+from datetime import date
 
 # Create your views here.
 
@@ -126,3 +127,22 @@ def new_ngo(request):
         return redirect('admin_login')
     ngo = NGO.objects.filter(status="Pending")
     return render(request,'new_ngo.html',locals())
+
+def view_ngodetail(request,pid):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    ngo=NGO.objects.get(id=pid)
+    if request.method == "POST":
+        status = request.POST['status']
+        adminremark = request.POST['adminremark']
+        try:
+            ngo.adminremark=adminremark
+            ngo.status = status
+            ngo.updationdate=date.today()
+            ngo.save()
+            error="no"
+        except:
+            error="yes"
+    return render(request,'view_ngodetail.html',locals())
+
+
