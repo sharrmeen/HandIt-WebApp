@@ -10,6 +10,20 @@ class Donor(models.Model):
     regdate = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.user.username
+    
+class Category(models.Model):
+    CATEGORY_CHOICES = [
+        ('food', 'Food'),
+        ('clothes', 'Clothes'),
+        ('book', 'Book'),
+        ('e-waste', 'E-waste'),
+        ('money', 'Money'),
+    ]
+
+    name = models.CharField(max_length=50, unique=True, choices=CATEGORY_CHOICES)
+
+    def __str__(self):
+        return self.get_name_display()
 
 class NGO(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -22,6 +36,9 @@ class NGO(models.Model):
     regdate = models.DateTimeField(auto_now_add=True)
     adminremark = models.CharField(null=True, max_length=300)
     updationdate = models.DateField(null=True)
+
+    category = models.ManyToManyField(Category, related_name='ngos')
+    
     def __str__(self):
         return self.user.username
 
