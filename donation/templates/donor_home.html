@@ -1,1 +1,185 @@
-<h1>HELLO BITCHES</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Categories</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 2.5em;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .category-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            width: 220px;
+            height: 200px;
+            margin: 15px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .category-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            filter: brightness(70%);
+        }
+
+        /* Background Images for Each Category */
+        a[href="#food"] .category-box::before {
+            background-image: url('../static/images/foods.jpg'); /* Replace with your image URL */
+        }
+
+        a[href="#books"] .category-box::before {
+            background-image: url('../static/images/books.jpg'); /* Replace with your image URL */
+        }
+
+        a[href="#clothes"] .category-box::before {
+            background-image: url('../static/images/clothes.jpg'); /* Replace with your image URL */
+        }
+
+        a[href="#ewaste"] .category-box::before {
+            background-image: url('../static/images/ewaste.jpg'); /* Replace with your image URL */
+        }
+
+        a[href="#money"] .category-box::before {
+            background-image: url('../static/images/money.png'); /* Replace with your image URL */
+        }
+
+        .category-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-box span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Toggle Button Styling */
+        .toggle-btn {
+            display: block;
+            background-color: #28a745;
+            color: #fff;
+            text-align: center;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 auto;
+            width: 200px;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background-color: #218838;
+        }
+
+        .donor-info {
+            display: none;
+            margin: 20px auto;
+            width: 300px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .donor-info p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Donate to a Cause</h1>
+
+    <!-- Toggle Button for Donor Info -->
+    <div class="toggle-btn" onclick="toggleDonorInfo()">Show Donor Info</div>
+
+    <!-- Donor Info Section -->
+    <div class="donor-info" id="donor-info">
+        <p><strong>Donor Name:</strong> John Doe</p>
+        <p><strong>Email:</strong> johndoe@example.com</p>
+    </div>
+
+    <!-- Donation Categories -->
+    <div class="container">
+        <a href="#food">
+            <div class="category-box">
+                <span>Food</span>
+            </div>
+        </a>
+        <a href="#books">
+            <div class="category-box">
+                <span>Books</span>
+            </div>
+        </a>
+        <a href="#clothes">
+            <div class="category-box">
+                <span>Clothes</span>
+            </div>
+        </a>
+        <a href="#ewaste">
+            <div class="category-box">
+                <span>E-Waste</span>
+            </div>
+        </a>
+        <a href="#money">
+            <div class="category-box">
+                <span>Money</span>
+            </div>
+        </a>
+    </div>
+
+    <!-- JavaScript for Toggle Function -->
+    <script>
+        function toggleDonorInfo() {
+            var donorInfo = document.getElementById("donor-info");
+            if (donorInfo.style.display === "none" || donorInfo.style.display === "") {
+                donorInfo.style.display = "block";
+            } else {
+                donorInfo.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
