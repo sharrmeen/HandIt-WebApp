@@ -34,7 +34,7 @@ def ngo_login(request):
             try:
                 user1=NGO.objects.get(user=user)
                 if user1.status != "Pending":
-                    login(request,User)
+                    login(request,user)
                     error = "no"
                 else:
                     error="not"
@@ -106,10 +106,27 @@ def ngo_reg(request):
 
 
 
+
 def donor_home(request):
     if not request.user.is_authenticated:
         return redirect('donor_login')
-    return render(request,'donor_home.html')
+
+    # Get the category from the request
+    category_name = request.GET.get('category')
+
+    if category_name:
+        # Get the Category object matching the category_name
+        try:
+            category = Category.objects.get(name=category_name)
+            # Filter NGOs based on the selected category
+            ngos = NGO.objects.filter(category=category)
+        except Category.DoesNotExist:
+            ngos = NGO.objects.none()  # If the category doesn't exist, return an empty queryset
+    else:
+        # Show all NGOs if no category is selected
+        ngos = NGO.objects.all()
+
+    return render(request, 'donor_home.html', {'ngos': ngos, 'selected_category': category_name})
 
 
 def ngo_home(request):
@@ -129,6 +146,7 @@ def new_ngo(request):
     return render(request,'new_ngo.html',locals())
 
 def view_ngodetail(request,pid):
+    
     if not request.user.is_authenticated:
         return redirect('admin_login')
     ngo=NGO.objects.get(id=pid)
