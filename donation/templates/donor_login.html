@@ -10,23 +10,20 @@
     <title>Login Page</title>
 </head>
 <body>
-   
-   
-    <div class="login-reg-panel">
+   <div class="login-reg-panel">
             <div class="login-info-box">
                 <h2>Have an account?</h2>
                 <p>Sign-in now</p>
                 <label id="label-register" for="log-reg-show">Login</label>
                 <input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked">
             </div>
-                                
             <div class="register-info-box">
                 <h2>Don't have an account?</h2>
                 <p>Create a new account</p>
                 <a href="{% url 'donor_reg' %}"><label id="label-login">Register</label></a>
                 <input type="radio" name="active-log-panel" id="log-login-show">
             </div>
-                                
+            
             <div class="white-panel">
               <div class="login-show">
                 <h2>Donor Login</h2>
@@ -34,9 +31,10 @@
                     {% csrf_token %} <!-- Important for security if you're using Django -->
                     <input type="email" placeholder="Email" name="emailid" required>
                     <input type="password" placeholder="Password" name="pwd" required>
-                    <input type="submit" value="Login">
-                </form>
-                <a href="">Forgot password?</a>
+                <div>
+                    <input class= "button-56"  type="submit" value="Login">
+                </div>
+                    <a href="">Forgot password?</a>
               </div>
                 <div class="register-show">
                     <h2>Register</h2>
