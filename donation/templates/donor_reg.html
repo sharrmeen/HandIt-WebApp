@@ -2,26 +2,33 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>RegistrationForm_v6 by Colorlib</title>
+    <title>Donor Registration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- MATERIAL DESIGN ICONIC FONT -->
-    <!-- <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css"> -->
-    
     <!-- STYLE CSS -->
-    <link rel="stylesheet" href="../static/css/registration.css">
-<meta name="robots" content="noindex, follow">
-<script>
-    function checkPassword(){
-        if(document.signup.pwd.value!=document.signup.cpwd.value){
-            alert("Password does not match")
-            document.signup.cpwd.focus();
-            return false;
-            
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Optional inline style for error display -->
+    <style>
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 15px;
         }
-        return true;
-    }
-</script>
+    </style>
+
+    <script>
+        // JS function to check if passwords match
+        function checkPassword() {
+            if (document.signup.pwd.value != document.signup.cpwd.value) {
+                alert("Passwords do not match!");
+                document.signup.cpwd.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 
 <body>
@@ -29,55 +36,61 @@
     <div class="wrapper">
         <div class="inner">
             <div class="image-holder">
-                <img src="../static/images/pexels-cottonbro-6591155 (2).jpg" alt="">
+                <img src="{% static 'images/pexels-cottonbro-6591155 (2).jpg' %}" alt="">
             </div>
             <form action="{% url 'donor_reg' %}" method="post" enctype="multipart/form-data" name="signup" onsubmit="return checkPassword()">
                 {% csrf_token %}
                 <h3 style="color: #4e4d4ddc;">Donor Registration</h3>
+
+                <!-- Display Error Message -->
+                {% if error %}
+                    <div class="error-message">{{ error }}</div>
+                {% endif %}
+
+                <!-- First Name and Last Name -->
                 <div class="form-row">
-                    <input type="text" class="form-control" placeholder="First Name" name="first_name" required>
-                    <input type="text" class="form-control" placeholder="Last Name" name="last_name" required>
-                    
+                    <input type="text" class="form-control" placeholder="First Name" name="first_name" value="{{ request.POST.first_name }}" required>
+                    <input type="text" class="form-control" placeholder="Last Name" name="last_name" value="{{ request.POST.last_name }}" required>
                 </div>
+
+                <!-- Password and Confirm Password -->
                 <div class="form-row">
                     <input type="password" name="pwd" class="form-control" placeholder="Password" required>
-                    <input type="password" name="cpwd" class="form-control" placeholder="Confirm Password">
+                    <input type="password" name="cpwd" class="form-control" placeholder="Confirm Password" required>
                 </div>
+
+                <!-- Contact Number and Email -->
                 <div class="form-row">
                     <input type="text" class="form-control" placeholder="Contact Number" name="contact_number"
-                    pattern="\d{10}" maxlength="10" minlength="10" required title="Please enter exactly 10 digits for the contact number">
-                    <input type="text" class="form-control" placeholder="E-Mail" name="email" required>
+                    pattern="\d{10}" maxlength="10" minlength="10" value="{{ request.POST.contact_number }}" required title="Please enter exactly 10 digits for the contact number">
+                    <input type="email" class="form-control" placeholder="E-Mail" name="emailid" value="{{ request.POST.emailid }}" required
+                        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" 
+                    title="Please enter a valid email address (e.g., user@example.com)">
                 </div>
+
+                <!-- Address and Profile Picture -->
                 <div class="form-row">
-                    
-                    <input type="text" class="form-control" placeholder="Address" style="height: 100px; width:600px;" name="address" required>   
-                    <label for="profile-pic">Profile Picture:</label> 
-                    <input type="file" class="form-control" id="profile-pic"  style="height: 60px;" name="profile_pic" accept="image/*" required >
+                    <textarea class="form-control" placeholder="Address" style="height: 100px; width:600px;" name="address" required>{{ request.POST.address }}</textarea>
+                    <label for="profile-pic">Profile Picture:</label>
+                    <input type="file" class="form-control" id="profile-pic" style="height: 60px;" name="profile_pic" accept="image/*" required>
                 </div>
                 
+                <!-- Submit Button -->
                 <button>Submit
                     <i class="zmdi zmdi-long-arrow-right"></i>
                 </button>
             </form>
-            
         </div>
     </div>
 
-
+    <!-- Success/Error Handling (No Alerts) -->
     {% if error == "no" %}
-    <script>
-        alert('Signup Successful');
-        window.location=("{% url 'donor_login' %}");
-    </script>
+        <script>
+            alert('Signup Successful');
+            window.location = "{% url 'donor_login' %}";
+        </script>
     {% endif %}
 
-    {% if error == "yes" %}
-    <script>
-        alert('Something went wrong ,Try Again...');
-    </script> 
-    {% endif %}    
-    
-    
 </body>
 
 </html>
