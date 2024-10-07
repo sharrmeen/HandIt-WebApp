@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from .models import *
 from datetime import date
+import re  # Import the regex module
+from django.core.exceptions import ValidationError
 
 # Create your views here.
 
@@ -64,45 +66,71 @@ def admin_login(request):
 
 
 def donor_reg(request):
-    error=""
+    error = ""
     if request.method == "POST":
-        fn = request.POST['first_name']
-        ln = request.POST['last_name']
-        pwd = request.POST['pwd']
-        contact = request.POST['contact_number']
-        em = request.POST['email']
-        address = request.POST['address']
-        userpic = request.FILES['profile_pic']
+        fn = request.POST.get('first_name')
+        ln = request.POST.get('last_name')
+        pwd = request.POST.get('pwd')
+        contact = request.POST.get('contact_number')
+        em = request.POST.get('emailid')
+        address = request.POST.get('address')
+        userpic = request.FILES.get('profile_pic')
 
-        try:
-            user = User.objects.create_user(first_name=fn,last_name=ln,username=em,password=pwd)
-            Donor.objects.create(user=user,contact=contact,userpic=userpic,address=address)
-            error = "no"
-        except:
-            error = "yes"
-    return render(request,'donor_reg.html', locals())
+        # Email validation
+        email_pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+
+        if not re.match(email_pattern, em):
+            error = "Please enter a valid email address."
+        elif len(contact) != 10 or not contact.isdigit():
+            error = "Please enter a valid 10-digit contact number."
+        else:
+            try:
+                user = User.objects.create_user(first_name=fn, last_name=ln, username=em, password=pwd)
+                Donor.objects.create(user=user, contact=contact, userpic=userpic, address=address)
+                error = "no"
+                return redirect('donor_login')  # Redirect to the login page after successful registration
+            except Exception as e:
+                error = "An error occurred during registration. Please try again."
+
+    return render(request, 'donor_reg.html', {'error': error})
+
+
 
 
 def ngo_reg(request):
-    error=""
+    error = ""
     if request.method == "POST":
-        fn = request.POST['first_name']
-        ln = request.POST['last_name']
-        pwd = request.POST['pwd']
-        contact = request.POST['contact_number']
-        em = request.POST['email'] 
-        userpic = request.FILES['profile_pic']
-        idpic = request.FILES['id_pic']
-        address = request.POST['address']
-        aboutme = request.POST['aboutme']
+        fn = request.POST.get('first_name')
+        ln = request.POST.get('last_name')
+        pwd = request.POST.get('pwd')
+        contact = request.POST.get('contact_number')
+        em = request.POST.get('emailid')
+        address = request.POST.get('address')
+        about = request.POST.get('aboutme')
+        categories = request.POST.getlist('categories')
+        profile_pic = request.FILES.get('profile_pic')
+        id_pic = request.FILES.get('id_pic')
 
-        try:
-            user = User.objects.create_user(first_name=fn,last_name=ln,username=em,password=pwd)
-            NGO.objects.create(user=user,contact=contact,userpic=userpic,idpic=idpic,address=address,aboutme=aboutme,status="Pending")
-            error = "no"
-        except:
-            error = "yes"
-    return render(request,'ngo_reg.html', locals())
+        # Email validation
+        email_pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+
+        if not re.match(email_pattern, em):
+            error = "Please enter a valid email address."
+        elif len(contact) != 10 or not contact.isdigit():
+            error = "Please enter a valid 10-digit contact number."
+        else:
+            try:
+                # Create User
+                user = User.objects.create_user(first_name=fn, last_name=ln, username=em, password=pwd)
+                # Create NGO (adjust based on your model)
+                NGO.objects.create(user=user, contact=contact, address=address, profile_pic=profile_pic, id_pic=id_pic, about=about, categories=categories)
+                error = "no"
+                return redirect('ngo_login')  # Redirect to login after successful registration
+            except Exception as e:
+                error = "An error occurred during registration. Please try again."
+
+    return render(request, 'ngo_reg.html', {'error': error})
+
 
 
 
