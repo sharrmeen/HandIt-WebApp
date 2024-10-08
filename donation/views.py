@@ -4,6 +4,7 @@ from .models import *
 from datetime import date
 import re  # Import the regex module
 from django.core.exceptions import ValidationError
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
@@ -107,7 +108,7 @@ def ngo_reg(request):
         em = request.POST.get('emailid')
         address = request.POST.get('address')
         about = request.POST.get('aboutme')
-        categories = request.POST.getlist('categories')
+        categories = request.POST.getlist('categories')  # Get list of selected category IDs
         profile_pic = request.FILES.get('profile_pic')
         id_pic = request.FILES.get('id_pic')
 
@@ -122,8 +123,23 @@ def ngo_reg(request):
             try:
                 # Create User
                 user = User.objects.create_user(first_name=fn, last_name=ln, username=em, password=pwd)
-                # Create NGO (adjust based on your model)
-                NGO.objects.create(user=user, contact=contact, address=address, profile_pic=profile_pic, id_pic=id_pic, about=about, categories=categories)
+                
+                # Create NGO object (Notice field names: userpic, idpic)
+                ngo = NGO.objects.create(
+                    user=user,
+                    contact=contact,
+                    address=address,
+                    userpic=profile_pic,  # Correct field name
+                    idpic=id_pic,  # Correct field name
+                    aboutme=about
+                )
+                
+                # Handling Many-to-Many Field (Categories)
+                category_objs = Category.objects.filter(id__in=categories)
+                ngo.category.set(category_objs)  # Use set() to link selected categories
+                
+                ngo.save()  # Save the NGO object with linked categories
+
                 error = "no"
                 return redirect('ngo_login')  # Redirect to login after successful registration
             except Exception as e:
@@ -132,29 +148,11 @@ def ngo_reg(request):
     return render(request, 'ngo_reg.html', {'error': error})
 
 
-
-
-
 def donor_home(request):
     if not request.user.is_authenticated:
         return redirect('donor_login')
-
-    # Get the category from the request
-    category_name = request.GET.get('category')
-
-    if category_name:
-        # Get the Category object matching the category_name
-        try:
-            category = Category.objects.get(name=category_name)
-            # Filter NGOs based on the selected category
-            ngos = NGO.objects.filter(category=category)
-        except Category.DoesNotExist:
-            ngos = NGO.objects.none()  # If the category doesn't exist, return an empty queryset
-    else:
-        # Show all NGOs if no category is selected
-        ngos = NGO.objects.all()
-
-    return render(request, 'donor_home.html', {'ngos': ngos, 'selected_category': category_name})
+    
+    return render(request, 'donor_home.html')
 
 
 def ngo_home(request):
@@ -207,4 +205,12 @@ def delete_ngo(request,pid):
     User.objects.get(id=pid).delete()
     return redirect('all_ngo')
 
-
+def ngos_by_category(request, category_name):
+    # Get the category by the provided name or return a 404
+    category = get_object_or_404(Category, name__iexact=category_name)
+    
+    # Fetch NGOs associated with the selected category
+    ngos = NGO.objects.filter(category=category)
+    
+    # Pass the selected category and the list of NGOs to the template
+    return render(request, 'ngos_by_category.html', {'ngos': ngos, 'selected_category': category.name})
