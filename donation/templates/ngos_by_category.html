@@ -1,41 +1,111 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NGOs in {{ selected_category | title }}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        body {
+            background-color: #e9f8e6; /* Pastel green background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .card {
+            width: 18rem;
+            margin-bottom: 20px;
+            border: none; /* Remove default border */
+            border-radius: 15px; /* Rounded corners */
+            overflow: hidden; /* Round the corners of the image */
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative; /* For the overlay effect */
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Lift effect */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-img-top {
+            width: 100%; /* Fit the image inside the card */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: cover; /* Crop the image to cover the area */
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            bottom: 0; /* Position at the bottom */
+            left: 0;
+            width: 100%;
+            height: 40%; /* Height for the curved mask */
+            background: rgba(0, 0, 0, 0.2); /* Dark overlay with reduced opacity */
+            border-radius: 15px 15px 0 0; /* Curved top corners */
+            opacity: 0; /* Start as invisible */
+            transition: opacity 0.3s;
+        }
+
+        .card:hover .gradient-overlay {
+            opacity: 1; /* Show overlay on hover */
+        }
+
+        .card-body {
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            border-radius: 0 0 15px 15px; /* Rounded corners at the bottom */
+        }
+
+        .profile-pic {
+            border-radius: 15px 15px 0 0; /* Round top corners */
+        }
+
+        h5.card-title {
+            font-weight: bold;
+            color: #4d8c4c; /* Darker green for title */
+        }
+
+        p.card-text {
+            color: #555; /* Grey for text */
+        }
+
+        .container h2 {
+            color: #4d8c4c; /* Title color */
+            margin-bottom: 40px;
+        }
+    </style>
 </head>
 <body>
-    <h1>NGOs in {{ selected_category | title }}</h1>
 
-    <div class="container mt-5">
-        <table class="table table-striped table-hover">
-            <thead class="table-dark">
-                <tr>
-                    <th>NGO Name</th>
-                    <th>Contact</th>
-                    <th>Address</th>
-                    <th>About</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for ngo in ngos %}
-                <tr>
-                    <td>{{ ngo.user.first_name }}</td>
-                    <td>{{ ngo.contact }}</td>
-                    <td>{{ ngo.address }}</td>
-                    <td>{{ ngo.aboutme }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="4" class="text-center">No NGOs found in this category</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<div class="container mt-5">
+    <h2 class="mb-4 text-center" style="background-color: rgb(181, 219, 197);">
+        {% if selected_category %}
+            NGOs accepting {{ selected_category | title }}
+        {% else %}
+            All NGOs
+        {% endif %}
+    </h2>
+
+    <div class="row">
+        {% for ngo in ngos %}
+            <div class="col-md-4 d-flex align-items-stretch">
+                <div class="card">
+                    <img class="card-img-top profile-pic" src="{{ ngo.userpic.url }}" alt="Profile picture of {{ ngo.user.first_name }}">
+                    <div class="gradient-overlay"></div> <!-- Overlay for effect -->
+                    <div class="card-body">
+                        <h5 class="card-title">{{ ngo.user.first_name }}</h5>
+                        <p class="card-text">{{ ngo.aboutme|truncatewords:15 }}</p>
+                        <p><strong>Contact:</strong> {{ ngo.contact }}</p>
+                        <p><strong>Address:</strong> {{ ngo.address }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center">
+                <p>No NGOs found in this category</p>
+            </div>
+        {% endfor %}
     </div>
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
