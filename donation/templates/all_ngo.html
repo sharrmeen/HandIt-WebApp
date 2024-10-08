@@ -69,8 +69,8 @@
                     <td>
                         <!-- Action button to view details -->
                         <a href="{% url 'view_ngodetail' i.id %}" class="btn btn-info btn-sm">View Details</a>
-                     |  {% if i.User.id %}
-                            <a href="{% url 'delete_ngo' i.User.id %}" class="btn btn-info btn-sm" 
+                     |  {% if i.user.id %}
+                            <a href="{% url 'delete_ngo' i.user.id %}" class="btn btn-info btn-sm" 
                                 onclick="return confirm('Are you sure?')">Delete</a>
                         {% else %}
                             <span class="btn btn-info btn-sm disabled">Delete</span>

@@ -62,22 +62,31 @@
 
                 <!-- Organization Name and Chief Name -->
                 <div class="form-row">
-                    <input type="text" class="form-control" placeholder="Organization Name" name="first_name" value="{{ request.POST.first_name }}" required>
-                    <input type="text" class="form-control" placeholder="Organization Chief" name="last_name" value="{{ request.POST.last_name }}" required>
+                    <label for="org-name">Organization Name:</label>
+                    <input type="text" id="org-name" class="form-control" placeholder="Organization Name" name="first_name" value="{{ request.POST.first_name }}" required>
+                    
+                    <label for="chief-name">Organization Chief:</label>
+                    <input type="text" id="chief-name" class="form-control" placeholder="Organization Chief" name="last_name" value="{{ request.POST.last_name }}" required>
                 </div>
 
                 <!-- Password and Confirm Password -->
                 <div class="form-row">
-                    <input type="password" name="pwd" class="form-control" placeholder="Password" required>
-                    <input type="password" name="cpwd" class="form-control" placeholder="Confirm Password" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="pwd" class="form-control" placeholder="Password" required>
+                    
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="cpwd" class="form-control" placeholder="Confirm Password" required>
                 </div>
 
                 <!-- Contact Number and Email -->
                 <div class="form-row">
-                    <input type="text" class="form-control" placeholder="Contact Number" name="contact_number"
+                    <label for="contact-number">Contact Number:</label>
+                    <input type="text" id="contact-number" class="form-control" placeholder="Contact Number" name="contact_number"
                         pattern="\d{10}" maxlength="10" minlength="10" value="{{ request.POST.contact_number }}" required 
                         title="Please enter exactly 10 digits for the contact number">
-                    <input type="email" class="form-control" placeholder="E-Mail" name="emailid" value="{{ request.POST.emailid }}" required
+                    
+                    <label for="email">E-Mail:</label>
+                    <input type="email" id="email" class="form-control" placeholder="E-Mail" name="emailid" value="{{ request.POST.emailid }}" required
                         pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" 
                         title="Please enter a valid email address (e.g., user@example.com)">
                 </div>
@@ -86,8 +95,8 @@
                 <div class="form-row mb-3">
                     <label>Select Categories:</label>
                     <div class="checkbox-group">
-                        <label><input type="checkbox" name="categories" value="food"> Food</label>
                         <label><input type="checkbox" name="categories" value="clothes"> Clothes</label>
+                        <label><input type="checkbox" name="categories" value="food"> Food</label>
                         <label><input type="checkbox" name="categories" value="books"> Books</label>
                         <label><input type="checkbox" name="categories" value="e-waste"> E-Waste</label>
                         <label><input type="checkbox" name="categories" value="money"> Money</label>
@@ -108,13 +117,13 @@
 
                 <!-- Address Field -->
                 <div class="form-row mb-3">
-                    <label>Address:</label>
+                    <label for="address">Address:</label>
                     <textarea class="form-control" id="address" placeholder="Address" name="address" style="height: 90px;" required>{{ request.POST.address }}</textarea>
                 </div>
 
                 <!-- About Organization Field -->
                 <div class="form-row mb-3">
-                    <label>About Your Organization:</label>
+                    <label for="about-me">About Your Organization:</label>
                     <textarea name="aboutme" id="about-me" class="form-control" placeholder="About" rows="6" required>{{ request.POST.aboutme }}</textarea>
                 </div>
 
@@ -133,4 +142,5 @@
     {% endif %}
 </body>
 </html>
+
 
