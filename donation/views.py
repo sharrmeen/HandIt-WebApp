@@ -5,6 +5,8 @@ from datetime import date
 import re  # Import the regex module
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, get_object_or_404
+from django.db import transaction  # For atomic transactions
+import logging
 
 # Create your views here.
 
@@ -98,8 +100,18 @@ def donor_reg(request):
 
 
 
+logger = logging.getLogger(__name__)
+
+from django.db import transaction
+import re
+import logging
+
+logger = logging.getLogger(__name__)
+
 def ngo_reg(request):
     error = ""
+    categories = Category.objects.all()  # Fetch all categories
+
     if request.method == "POST":
         fn = request.POST.get('first_name')
         ln = request.POST.get('last_name')
@@ -108,44 +120,51 @@ def ngo_reg(request):
         em = request.POST.get('emailid')
         address = request.POST.get('address')
         about = request.POST.get('aboutme')
-        categories = request.POST.getlist('categories')  # Get list of selected category IDs
+        selected_categories = request.POST.getlist('categories')  # Get list of selected category IDs
         profile_pic = request.FILES.get('profile_pic')
         id_pic = request.FILES.get('id_pic')
 
         # Email validation
         email_pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-
+        
         if not re.match(email_pattern, em):
             error = "Please enter a valid email address."
         elif len(contact) != 10 or not contact.isdigit():
             error = "Please enter a valid 10-digit contact number."
         else:
             try:
-                # Create User
-                user = User.objects.create_user(first_name=fn, last_name=ln, username=em, password=pwd)
-                
-                # Create NGO object (Notice field names: userpic, idpic)
-                ngo = NGO.objects.create(
-                    user=user,
-                    contact=contact,
-                    address=address,
-                    userpic=profile_pic,  # Correct field name
-                    idpic=id_pic,  # Correct field name
-                    aboutme=about
-                )
-                
-                # Handling Many-to-Many Field (Categories)
-                category_objs = Category.objects.filter(id__in=categories)
-                ngo.category.set(category_objs)  # Use set() to link selected categories
-                
-                ngo.save()  # Save the NGO object with linked categories
+                # Ensure the following block runs as a transaction
+                with transaction.atomic():
+                    # Create User
+                    user = User.objects.create_user(first_name=fn, last_name=ln, username=em, password=pwd)
+                    
+                    # Create NGO object with status set to "Pending"
+                    ngo = NGO.objects.create(
+                        user=user,
+                        contact=contact,
+                        address=address,
+                        userpic=profile_pic,  # Correct field name
+                        idpic=id_pic,  # Correct field name
+                        aboutme=about,
+                        status='Pending'  # Explicitly set the status to "Pending"
+                    )
+                    
+                    # Handling Many-to-Many Field (Categories)
+                    category_objs = Category.objects.filter(id__in=selected_categories)  # Use category IDs
+                    ngo.category.set(category_objs)  # Use set() to link selected categories
+                    
+                    ngo.save()  # Save the NGO object with linked categories
 
                 error = "no"
                 return redirect('ngo_login')  # Redirect to login after successful registration
+
             except Exception as e:
+                logger.error(f"Exception during NGO registration: {e}")
                 error = "An error occurred during registration. Please try again."
 
-    return render(request, 'ngo_reg.html', {'error': error})
+    return render(request, 'ngo_reg.html', {'error': error, 'categories': categories})
+
+
 
 
 def donor_home(request):

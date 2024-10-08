@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,67 +29,40 @@
         }
 
         .category-box {
-            background-color: rgba(255, 255, 255, 0.8);
+            position: relative; /* Allows for absolute positioning of the text */
+            background-color: #fff;
             border: 2px solid #ddd;
             border-radius: 15px;
-            width: 220px;
-            height: 200px;
+            width: 250px;
+            height: 200px; /* Fixed height for consistent sizing */
             margin: 15px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            text-align: center;
+            overflow: hidden; /* Ensures that the image doesn't overflow */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .category-box img {
+            width: 100%;
+            height: 100%; /* Ensures the image covers the entire box */
+            object-fit: cover; /* Ensures the image maintains its aspect ratio */
+        }
+
+        .category-box span {
+            position: absolute; /* Positioning the text over the image */
+            bottom: 10px; /* Adjusts the vertical position */
+            left: 10px; /* Adjusts the horizontal position */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
             font-size: 24px;
             font-weight: bold;
-            color: #fff;
-            transition: all 0.4s ease;
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .category-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            z-index: 0;
-            filter: brightness(70%);
-        }
-
-        /* Background Images for Each Category */
-        a[href="#food"] .category-box::before {
-            background-image: url('../static/images/foods.jpg'); /* Replace with your image URL */
-        }
-
-        a[href="#books"] .category-box::before {
-            background-image: url('../static/images/books.jpg'); /* Replace with your image URL */
-        }
-
-        a[href="#clothes"] .category-box::before {
-            background-image: url('../static/images/clothes.jpg'); /* Replace with your image URL */
-        }
-
-        a[href="#ewaste"] .category-box::before {
-            background-image: url('../static/images/ewaste.jpg'); /* Replace with your image URL */
-        }
-
-        a[href="#money"] .category-box::before {
-            background-image: url('../static/images/money.png'); /* Replace with your image URL */
+            z-index: 1; /* Ensures the text appears above the image */
         }
 
         .category-box:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .category-box span {
-            position: relative;
-            z-index: 1;
         }
 
         /* Toggle Button Styling */
@@ -144,32 +117,36 @@
     <div class="container">
         <a href="{% url 'ngos_by_category' 'food' %}">
             <div class="category-box">
+                <img src="{% static 'images/foods.jpg' %}" alt="Food Donation">
                 <span>Food</span>
             </div>
         </a>
         <a href="{% url 'ngos_by_category' 'book' %}">
             <div class="category-box">
+                <img src="{% static 'images/books.jpg' %}" alt="Book Donation">
                 <span>Books</span>
             </div>
         </a>
         <a href="{% url 'ngos_by_category' 'clothes' %}">
             <div class="category-box">
+                <img src="{% static 'images/clothes.jpg' %}" alt="Clothes Donation">
                 <span>Clothes</span>
             </div>
         </a>
         <a href="{% url 'ngos_by_category' 'e-waste' %}">
             <div class="category-box">
+                <img src="{% static 'images/ewaste.jpg' %}" alt="E-Waste Donation">
                 <span>E-Waste</span>
             </div>
         </a>
         <a href="{% url 'ngos_by_category' 'money' %}">
             <div class="category-box">
+                <img src="{% static 'images/money.png' %}" alt="Monetary Donation">
                 <span>Money</span>
             </div>
         </a>
     </div>
     
-
     <!-- JavaScript for Toggle Function -->
     <script>
         function toggleDonorInfo() {
@@ -184,3 +161,5 @@
 
 </body>
 </html>
+
+

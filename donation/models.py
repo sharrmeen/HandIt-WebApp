@@ -32,7 +32,7 @@ class NGO(models.Model):
     userpic = models.FileField(null=True)
     idpic = models.FileField(null=True)
     aboutme = models.CharField(null=True, max_length=300)
-    status = models.CharField(null=True, max_length=20)
+    status = models.CharField(max_length=20, choices=[('Pending', 'Pending'), ('Approved', 'Approved'), ('Rejected', 'Rejected')], default='Pending')
     regdate = models.DateTimeField(auto_now_add=True)
     adminremark = models.CharField(null=True, max_length=300)
     updationdate = models.DateField(null=True)
