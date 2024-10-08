@@ -107,7 +107,7 @@ def ngo_reg(request):
         em = request.POST.get('emailid')
         address = request.POST.get('address')
         about = request.POST.get('aboutme')
-        categories = request.POST.getlist('categories')
+        categories = request.POST.getlist('categories')  # Get list of selected category IDs
         profile_pic = request.FILES.get('profile_pic')
         id_pic = request.FILES.get('id_pic')
 
@@ -122,8 +122,23 @@ def ngo_reg(request):
             try:
                 # Create User
                 user = User.objects.create_user(first_name=fn, last_name=ln, username=em, password=pwd)
-                # Create NGO (adjust based on your model)
-                NGO.objects.create(user=user, contact=contact, address=address, profile_pic=profile_pic, id_pic=id_pic, about=about, categories=categories)
+                
+                # Create NGO object (Notice field names: userpic, idpic)
+                ngo = NGO.objects.create(
+                    user=user,
+                    contact=contact,
+                    address=address,
+                    userpic=profile_pic,  # Correct field name
+                    idpic=id_pic,  # Correct field name
+                    aboutme=about
+                )
+                
+                # Handling Many-to-Many Field (Categories)
+                category_objs = Category.objects.filter(id__in=categories)
+                ngo.category.set(category_objs)  # Use set() to link selected categories
+                
+                ngo.save()  # Save the NGO object with linked categories
+
                 error = "no"
                 return redirect('ngo_login')  # Redirect to login after successful registration
             except Exception as e:
