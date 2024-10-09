@@ -81,10 +81,10 @@
                 <!-- City Selection -->
                 <div class="form-row">
                     <label for="city-select">Select City:</label>
-                    <select id="city-select" class="form-control" name="city" required>
+                    <select id="city-select" class="form-control" name="city" required``>
                         <option value="" disabled selected>Select your city</option>
                         {% for city in cities %}
-                            <option value="{{ city.name }}">{{ city.name }}</option>
+                            <option value="{{ city.id }}">{{ city.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -93,18 +93,21 @@
                 <div class="form-row">
                     <div class="file-input-container">
                         <label for="profile-pic">Profile Picture:</label>
-                        <input type="file" class="form-control" id="profile-pic" name="profile_pic" accept="image/*" onchange="previewImage(this, 'profile-preview')" required>
-                        <img id="profile-preview" class="image-preview" alt="Profile Preview">
+                        <input type="file" class="file-input" id="profile-pic" name="profile_pic" accept="image/*" onchange="previewImage(this, 'profile-preview')" required>
+                        <label for="profile-pic" class="file-label">Choose File</label>
+                        <img id="profile-preview" class="image-preview" alt="Profile Preview" style="display: none;">
                     </div>
+                
                     <div class="file-input-container">
                         <label for="id-pic">ID Picture:</label>
-                        <input type="file" class="form-control" id="id-pic" name="id_pic" accept="image/*" onchange="previewImage(this, 'id-preview')" required>
-                        <img id="id-preview" class="image-preview" alt="ID Preview">
+                        <input type="file" class="file-input" id="id-pic" name="id_pic" accept="image/*" onchange="previewImage(this, 'id-preview')" required>
+                        <label for="id-pic" class="file-label">Choose File</label>
+                        <img id="id-preview" class="image-preview" alt="ID Preview" style="display: none;">
                     </div>
                 </div>
 
                 <!-- Categories Selection -->
-                <div class="form-row">
+                <div class="form-row" style="margin-top: 20px;">
                     <label>Select Categories:</label>
                     <div class="checkbox-group">
                         {% for category in categories %}

@@ -158,40 +158,6 @@ h2 {
     border-color: #5a6f80;
 }
 
-/* File input styling */
-input[type="file"].form-control {
-    fill: #fff;
-    display: block;
-    width: 300px;
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    color: #808080;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-input[type="file"]::before {
-    display: inline-block;
-    background: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    color: #fff;
-    cursor: pointer;
-}
-
-input[type="file"]:hover::before {
-    background: #e0e0e0;
-}
-
-input[type="file"]:focus::before {
-    outline: none;
-}
-
 /* Textarea styling */
 textarea.form-control {
     padding: 13px;
@@ -285,3 +251,45 @@ button:hover {
     }
 }
 
+
+input[type="file"]::before {
+    content: 'Choose File'; /* Custom button text */
+    display: inline-block; /* Inline block for centering */
+    background: #f0f0f0; /* Light gray background */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding */
+    text-align: center; /* Center text */
+    color: #808080; /* Gray text color */
+    cursor: pointer; /* Pointer on hover */
+}
+
+/* To position the custom button */
+input[type="file"]:hover::before {
+    background: #e0e0e0; /* Slightly darker on hover */
+}
+
+/* To maintain the appearance of the file input */
+input[type="file"]:focus::before {
+    outline: none; /* Remove outline on focus */
+}
+
+.file-input {
+    display: none; /* Hide the actual file input */
+}
+
+.file-label {
+    display: inline-block; /* Inline block for centering */
+    background: #f0f0f0; /* Light gray background */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding */
+    text-align: center; /* Center text */
+    color: #808080; /* Gray text color */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease; /* Transition for hover */
+}
+
+.file-label:hover {
+    background: #e0e0e0; /* Slightly darker on hover */
+}
