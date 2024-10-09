@@ -36,5 +36,7 @@ urlpatterns = [
     path("accepted_ngo",accepted_ngo,name="accepted_ngo"),
     path("all_ngo",all_ngo,name="all_ngo"),
     path("delete_ngo/<int:pid>",delete_ngo,name="delete_ngo"),
+    path('category/<str:category_name>/', ngos_by_category, name='ngos_by_category'),
+
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
