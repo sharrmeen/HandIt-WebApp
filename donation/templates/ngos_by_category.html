@@ -87,16 +87,18 @@
     <div class="row">
         {% for ngo in ngos %}
             <div class="col-md-4 d-flex align-items-stretch">
-                <div class="card">
-                    <img class="card-img-top profile-pic" src="{{ ngo.userpic.url }}" alt="Profile picture of {{ ngo.user.first_name }}">
-                    <div class="gradient-overlay"></div> <!-- Overlay for effect -->
-                    <div class="card-body">
-                        <h5 class="card-title">{{ ngo.user.first_name }}</h5>
-                        <p class="card-text">{{ ngo.aboutme|truncatewords:15 }}</p>
-                        <p><strong>Contact:</strong> {{ ngo.contact }}</p>
-                        <p><strong>Address:</strong> {{ ngo.address }}</p>
+                <a href="{% url 'donor_form' ngo.id %}" class="text-decoration-none">
+                    <div class="card">
+                        <img class="card-img-top profile-pic" src="{{ ngo.userpic.url }}" alt="Profile picture of {{ ngo.user.first_name }}">
+                        <div class="gradient-overlay"></div> <!-- Overlay for effect -->
+                        <div class="card-body">
+                            <h5 class="card-title">{{ ngo.user.first_name }}</h5>
+                            <p class="card-text">{{ ngo.aboutme|truncatewords:15 }}</p>
+                            <p><strong>Contact:</strong> {{ ngo.contact }}</p>
+                            <p><strong>Address:</strong> {{ ngo.address }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         {% empty %}
             <div class="col-12 text-center">
@@ -104,6 +106,7 @@
             </div>
         {% endfor %}
     </div>
+    
 </div>
 
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>

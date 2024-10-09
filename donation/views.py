@@ -2,10 +2,11 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from .models import *
 from datetime import date
-import re  # Import the regex module
+import re 
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
-from django.db import transaction  # For atomic transactions
+from django.db import transaction  
 import logging
 
 # Create your views here.
@@ -31,23 +32,28 @@ def donor_login(request):
     return render(request,'donor_login.html',locals())
 
 def ngo_login(request):
+    error = None
     if request.method == 'POST':
         u = request.POST['emailid']
         p = request.POST['pwd']
         user = authenticate(username=u, password=p)
+        
         if user:
             try:
-                user1=NGO.objects.get(user=user)
+                user1 = NGO.objects.get(user=user)  # Get the NGO object for this user
                 if user1.status != "Pending":
-                    login(request,user)
-                    error = "no"
+                    login(request, user)  # Log in the user
+
+                    # Redirect to ngo_home with the ngo_id
+                    return redirect('ngo_home', ngo_id=user1.id)
                 else:
-                    error="not"
-            except:
-                error="yes"
+                    error = "not"
+            except NGO.DoesNotExist:
+                error = "yes"
         else:
             error = "yes"
-    return render(request,'ngo_login.html',locals())
+    
+    return render(request, 'ngo_login.html', locals())
 
 def admin_login(request):
     if request.method == 'POST':
@@ -173,11 +179,23 @@ def donor_home(request):
     
     return render(request, 'donor_home.html')
 
-
-def ngo_home(request):
+def ngo_home(request, ngo_id):
     if not request.user.is_authenticated:
-        return redirect('ngo_login')
-    return render(request,'ngo_home.html')
+        return redirect('login')  # Redirect to login if the user is not authenticated
+
+    ngo = NGO.objects.get(id=ngo_id)
+    donations = Donation.objects.filter(Ngo=ngo)
+
+    if request.method == 'POST':
+        donation_id = request.POST.get('donation_id')
+        status = request.POST.get('status')
+        donation = Donation.objects.get(id=donation_id)
+        donation.status = status
+        donation.Updationdate = timezone.now()  # Update the status change date
+        donation.save()
+
+    return render(request, 'ngo_home.html', {'ngo': ngo, 'donations': donations})
+
 
 def admin_home(request):
     if not request.user.is_authenticated:
@@ -233,3 +251,40 @@ def ngos_by_category(request, category_name):
     
     # Pass the selected category and the list of NGOs to the template
     return render(request, 'ngos_by_category.html', {'ngos': ngos, 'selected_category': category.name})
+
+
+
+    
+
+def donor_form(request, ngo_id):
+    ngo = NGO.objects.get(id=ngo_id)
+    if request.user.is_authenticated:
+        donor = Donor.objects.get(user=request.user) 
+
+        if request.method == 'POST':
+            donor_name = request.POST.get('donor_name')
+            donor_address = request.POST.get('donor_address')
+            donor_phone = request.POST.get('donor_phone')
+            donation_type = request.POST.get('donation_type')
+            donation_photo = request.FILES.get('donation_photo')
+
+            # # Assuming `DonationArea` is mapped to donation types like food, clothing, etc.
+            # donation_area = DonationArea.objects.get(name=donation_type)
+
+            # Create a new Donation instance and save
+            donation = Donation.objects.create(
+                donor=donor,
+                donationname=donor_name,
+                donationpic=donation_photo,
+                Collectionloc=donor_address,
+                Description=f"Donation of {donation_type}",
+                status="Pending",  # Default status
+                Donationdate=timezone.now(),
+                Ngo=ngo,
+                # donationarea=donation_area
+            )
+            donation.save()
+
+            return redirect('donor_home')
+
+        return render(request, 'donor_form.html', {'ngo': ngo})
