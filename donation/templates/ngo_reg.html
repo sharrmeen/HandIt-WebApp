@@ -8,7 +8,7 @@
 
     <!-- STYLE CSS -->
     <!-- STYLE CSS -->
-    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <link rel="stylesheet" href="../static/css/ngo_reg.css">
     <meta name="robots" content="noindex, follow">
 
     <style>
@@ -109,7 +109,8 @@
 
         .file-input-container label {
             font-weight: bold;
-    <style>
+        }
+    
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f9f9f9;
@@ -134,7 +135,7 @@
             max-width: 800px;
         }
 
-        .image-holder {
+        /* .image-holder {
             text-align: center;
             margin-bottom: 30px;
         }
@@ -143,7 +144,7 @@
             max-width: 100%;
             height: auto;
             border-radius: 10px;
-        }
+        } */
 
         h3 {
             text-align: center;
@@ -209,7 +210,7 @@
             font-weight: bold;
         }
 
-        .image-preview {
+        /* .image-preview {
             margin-top: 10px;
             max-height: 200px;
             border-radius: 5px;
@@ -222,7 +223,7 @@
             max-height: 200px;
             border-radius: 5px;
             display: none;
-        }
+        } */
 
         .checkbox-group {
             display: flex;
@@ -299,16 +300,13 @@
         <div class="inner">
             <div class="image-holder">
                 <img src="{% static 'images/pexels-cottonbro-6591155 (2).jpg' %}" alt="NGO Registration Image">
-                <img src="{% static 'images/pexels-cottonbro-6591155 (2).jpg' %}" alt="NGO Registration Image">
             </div>
 
 
             <form action="{% url 'ngo_reg' %}" method="post" enctype="multipart/form-data" name="signup" onsubmit="return checkPassword()">
                 {% csrf_token %}
                 <h3>NGO Registration</h3>
-                <h3>NGO Registration</h3>
 
-                <!-- Error Message -->
                 <!-- Error Message -->
                 {% if error %}
                     <div class="error-message">{{ error }}</div>
