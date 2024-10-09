@@ -5,6 +5,7 @@ from .models import *
 
 admin.site.register(Donor)
 admin.site.register(NGO)
+admin.site.register(City)
 admin.site.register(DonationArea)
 admin.site.register(Gallery)
 admin.site.register(Donation)

@@ -111,6 +111,7 @@ logger = logging.getLogger(__name__)
 def ngo_reg(request):
     error = ""
     categories = Category.objects.all()  # Fetch all categories
+    cities = City.objects.all()
 
     if request.method == "POST":
         fn = request.POST.get('first_name')
@@ -123,6 +124,8 @@ def ngo_reg(request):
         selected_categories = request.POST.getlist('categories')  # Get list of selected category IDs
         profile_pic = request.FILES.get('profile_pic')
         id_pic = request.FILES.get('id_pic')
+        city = request.POST.get('city')  # Get the selected city
+        ngo.city = city  # Save the selected city to the NGO object
 
         # Email validation
         email_pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
@@ -131,6 +134,8 @@ def ngo_reg(request):
             error = "Please enter a valid email address."
         elif len(contact) != 10 or not contact.isdigit():
             error = "Please enter a valid 10-digit contact number."
+        elif not city:  # Validate that a city has been selected
+            error = "Please select a city."
         else:
             try:
                 # Ensure the following block runs as a transaction
@@ -146,6 +151,7 @@ def ngo_reg(request):
                         userpic=profile_pic,  # Correct field name
                         idpic=id_pic,  # Correct field name
                         aboutme=about,
+                        city=city,  # Save the selected city (make sure your NGO model has a city field)
                         status='Pending'  # Explicitly set the status to "Pending"
                     )
                     
@@ -162,8 +168,7 @@ def ngo_reg(request):
                 logger.error(f"Exception during NGO registration: {e}")
                 error = "An error occurred during registration. Please try again."
 
-    return render(request, 'ngo_reg.html', {'error': error, 'categories': categories})
-
+    return render(request, 'ngo_reg.html', {'error': error, 'categories': categories, 'cities': cities})
 
 
 
