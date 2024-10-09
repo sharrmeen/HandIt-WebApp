@@ -79,14 +79,15 @@ textarea {
 .wrapper {
     min-height: 100vh;
     display: flex;
-    padding: 20px;
+    padding: 50px;
     align-items: center;
     background: url("../images/regbg.png") no-repeat center center;
     background-size: cover;
 }
 
 .inner {
-    min-width: 861px;
+    width: 100%;
+    max-width: 1350px;
     transform: translateX(47px);
     margin: auto;
     display: flex;
@@ -109,30 +110,29 @@ form {
 }
 
 h3 {
-    font-size: 25px;
+    font-size: 40px;
     text-align: center;
     margin-bottom: 21px;
-    color: #5a6f80;
+    color: #5a6f80 !important;
     text-transform: uppercase;
     font-family: "Metropolis"; /* Changed to Metropolis */
 }
 
 .form-control {
     height: 47px;
+    width: 100%;
     display: block;
     border: 1px solid #f0f8ff;
-    background: none;
-    border-radius: 5px;
+    background: white;
+    border-radius: 20px;
     padding: 0 19px;
 }
 
 .form-control:focus {
-    border: 1px solid #5a6f80;
+    transition: 0.5s;
+    border-color: #5a6f80;
 }
 
-.form-control::placeholder {
-    color: #999; /* Combined placeholder styles */
-}
 
 select.form-control {
     /* -moz-appearance: none;
@@ -242,25 +242,11 @@ button:hover {
     }
 }
 
-/* Style the file input */
-input[type="file"].form-control {
-    display: block; /* Makes the input a block element */
-    padding: 10px; /* Adds padding for better appearance */
-    text-align: center; /* Centers text inside the button */
-    border: 1px solid #ccc; /* Border styling */
-    border-radius: 5px; /* Rounded corners */
-    color: #808080; /* Gray text color */
-}
-
-/* Style to center the text in the input */
-input[type="file"] {
-    display: none; /* Hide the native file input */
-}
 
 input[type="file"]::before {
     content: 'Choose File'; /* Custom button text */
     display: inline-block; /* Inline block for centering */
-    background: #f0f0f0; /* Light gray background */
+    background: #fff; /* Light gray background */
     border: 1px solid #ccc; /* Border */
     border-radius: 5px; /* Rounded corners */
     padding: 10px; /* Padding */
@@ -277,4 +263,23 @@ input[type="file"]:hover::before {
 /* To maintain the appearance of the file input */
 input[type="file"]:focus::before {
     outline: none; /* Remove outline on focus */
+}
+.file-input {
+    display: none; /* Hide the actual file input */
+}
+
+.file-label {
+    display: inline-block; /* Inline block for centering */
+    background: #f0f0f0; /* Light gray background */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding */
+    text-align: center; /* Center text */
+    color: #808080; /* Gray text color */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease; /* Transition for hover */
+}
+
+.file-label:hover {
+    background: #e0e0e0; /* Slightly darker on hover */
 }

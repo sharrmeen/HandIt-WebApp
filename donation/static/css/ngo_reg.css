@@ -202,7 +202,7 @@ button:hover {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #fff;
 }
 
 .checkbox-group label {
@@ -255,18 +255,19 @@ button:hover {
 input[type="file"]::before {
     content: 'Choose File'; /* Custom button text */
     display: inline-block; /* Inline block for centering */
-    background: #f0f0f0; /* Light gray background */
-    border: 1px solid #ccc; /* Border */
+    background: #5a6f80; /* Light gray background */
+    border: 1px solid #fff; /* Border */
     border-radius: 5px; /* Rounded corners */
     padding: 10px; /* Padding */
     text-align: center; /* Center text */
-    color: #808080; /* Gray text color */
+    color: #fff; /* Gray text color */
     cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* To position the custom button */
 input[type="file"]:hover::before {
-    background: #e0e0e0; /* Slightly darker on hover */
+    background: #5bc1ac; /* Slightly darker on hover */
 }
 
 /* To maintain the appearance of the file input */
