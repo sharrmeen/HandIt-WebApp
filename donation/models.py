@@ -25,6 +25,12 @@ class Category(models.Model):
     def __str__(self):
         return self.get_name_display()
 
+class City(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
 class NGO(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     contact = models.CharField(null=True, max_length=10)
@@ -36,6 +42,7 @@ class NGO(models.Model):
     regdate = models.DateTimeField(auto_now_add=True)
     adminremark = models.CharField(null=True, max_length=300)
     updationdate = models.DateField(null=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, null=False) 
 
     category = models.ManyToManyField(Category, related_name='ngos')
     
