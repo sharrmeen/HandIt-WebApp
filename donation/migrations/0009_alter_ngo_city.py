@@ -14,9 +14,9 @@ class Migration(migrations.Migration):
             model_name="ngo",
             name="city",
             field=models.ForeignKey(
-                default=1,
-                on_delete=django.db.models.deletion.CASCADE,
-                to="donation.city",
+            on_delete=django.db.models.deletion.SET_NULL,
+            to="donation.city",
+            null=True
             ),
             preserve_default=False,
         ),
