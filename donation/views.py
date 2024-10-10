@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from .models import *
 from datetime import date
 import re 
@@ -179,11 +180,16 @@ def ngo_reg(request):
 
 
 
+@login_required
 def donor_home(request):
-    if not request.user.is_authenticated:
-        return redirect('donor_login')
-    
-    return render(request, 'donor_home.html')
+    donor = Donor.objects.get(user=request.user)
+    context = {
+        'donor': donor,
+        'donor_name': request.user.get_full_name(),  # Fetches the full name
+        'email': str(donor)  # Fetches the email
+    }
+    print(context)  # Debug line
+    return render(request, 'donor_home.html', context)
 
 def ngo_home(request, ngo_id):
     if not request.user.is_authenticated:
