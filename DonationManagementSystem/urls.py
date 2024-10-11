@@ -39,6 +39,8 @@ urlpatterns = [
     path('category/<str:category_name>/', ngos_by_category, name='ngos_by_category'),
     path('ngo/<int:ngo_id>/home/', ngo_home, name='ngo_home'),
     path('donor_form/<int:ngo_id>/',donor_form, name='donor_form'),
+    path("donation_history/", donation_history, name="donation_history"),
+    path("donation/<int:donation_id>/", donation_detail, name="donation_detail"),
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

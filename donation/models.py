@@ -63,7 +63,6 @@ class Donation(models.Model):
     Collectionloc = models.CharField(null=True, max_length=300)
     Description = models.CharField(null=True, max_length=300)
     status = models.CharField(null=True, max_length=50, default="Pending")
-    # status = models.CharField(null=True, max_length=50)
     Donationdate = models.DateTimeField(auto_now_add=True)
     donation_type = models.CharField(max_length=50, null=True)
     adminremark = models.CharField(null=True, max_length=300)
@@ -72,7 +71,7 @@ class Donation(models.Model):
     NGOremark = models.CharField(null=True, max_length=300)
     Updationdate = models.DateField(null=True)
     def __str__(self):
-        return self.id
+        return f"Donation by {self.donor.user.first_name} for {self.Ngo.user.first_name} - {self.donationname} ({self.status})"
 
 class Gallery(models.Model):
     donation = models.ForeignKey(Donation,on_delete=models.CASCADE)

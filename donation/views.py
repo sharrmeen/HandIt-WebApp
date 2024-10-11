@@ -293,6 +293,7 @@ def donor_form(request, ngo_id):
                 status="Pending",  # Default status
                 Donationdate=timezone.now(),
                 Ngo=ngo,
+                donation_type=donation_type
                 # donationarea=donation_area
             )
             donation.save()
@@ -300,3 +301,16 @@ def donor_form(request, ngo_id):
             return redirect('donor_home')
 
         return render(request, 'donor_form.html', {'ngo': ngo})
+
+def donation_history(request):
+    print("Donation history view accessed")
+    if not request.user.is_authenticated:
+        return redirect('donor_login')
+    user = request.user
+    donor = Donor.objects.get(user=user)
+    donation = Donation.objects.filter(donor=donor)
+    return render(request, 'donation_history.html', {'donation': donation})
+
+def donation_detail(request, donation_id):
+    donation = get_object_or_404(Donation, id=donation_id)
+    return render(request, 'donation_detail.html', {'donation': donation})

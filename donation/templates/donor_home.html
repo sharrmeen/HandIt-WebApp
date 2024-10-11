@@ -98,10 +98,38 @@
             margin: 10px 0;
             font-size: 18px;
         }
+        /* New CSS for Donation History Button */
+        .donation-history-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .donation-history-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
 
     </style>
 </head>
 <body>
+
+      <!-- Donation History Button -->
+      <a href="{% url 'donation_history' %}" class="donation-history-btn">Donation History</a>
 
     <h1>Donate to a Cause</h1>
 

@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Detail</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+
+        .detail-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .detail-card h5 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 2px solid green;
+            padding-bottom: 10px;
+        }
+
+        .detail-card p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .detail-card img {
+            border-radius: 10px;
+            margin-top: 10px;
+            max-width: 100%;
+        }
+
+        .btn-primary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="detail-card">
+                    <h5>Donation Detail</h5>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Donor Name:</strong></div>
+                        <div class="col-sm-8">{{ donation.donationname }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Donation Type:</strong></div>
+                        <div class="col-sm-8">{{ donation.donation_type }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Donation Date:</strong></div>
+                        <div class="col-sm-8">{{ donation.Donationdate|date:"Y-m-d H:i:s" }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Status:</strong></div>
+                        <div class="col-sm-8">{{ donation.status }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Collection Location:</strong></div>
+                        <div class="col-sm-8">{{ donation.Collectionloc }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Description:</strong></div>
+                        <div class="col-sm-8">{{ donation.Description }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Admin Remark:</strong></div>
+                        <div class="col-sm-8">{{ donation.adminremark }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>NGO Remark:</strong></div>
+                        <div class="col-sm-8">{{ donation.NGOremark }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Donation Photo:</strong></div>
+                        <div class="col-sm-8">
+                            {% if donation.donationpic %}
+                                <img src="{{ donation.donationpic.url }}" alt="{{ donation.donationname }}">
+                            {% else %}
+                                <p>No photo available.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <a href="{% url 'donation_history' %}" class="btn btn-primary">Back to History</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
