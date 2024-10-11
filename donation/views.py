@@ -10,6 +10,7 @@ from django.shortcuts import render, get_object_or_404
 from django.db import transaction  
 import logging
 
+
 # Create your views here.
 
 def index(request):
@@ -105,14 +106,6 @@ def donor_reg(request):
     return render(request, 'donor_reg.html', {'error': error})
 
 
-
-
-logger = logging.getLogger(__name__)
-
-from django.db import transaction
-import re
-import logging
-
 logger = logging.getLogger(__name__)
 
 def ngo_reg(request):
@@ -183,13 +176,13 @@ def ngo_reg(request):
 @login_required
 def donor_home(request):
     donor = Donor.objects.get(user=request.user)
+    cities = City.objects.all()
     context = {
         'donor': donor,
         'donor_name': request.user.get_full_name(),  # Fetches the full name
         'email': str(donor)  # Fetches the email
     }
-    print(context)  # Debug line
-    return render(request, 'donor_home.html', context)
+    return render(request, 'donor_home.html', {'cities': cities, 'donor': donor})
 
 def ngo_home(request, ngo_id):
     if not request.user.is_authenticated:
@@ -254,18 +247,22 @@ def delete_ngo(request,pid):
     User.objects.get(id=pid).delete()
     return redirect('all_ngo')
 
-def ngos_by_category(request, category_name):
+def ngos_by_category_and_city(request, category_name, city_name):
     # Get the category by the provided name or return a 404
     category = get_object_or_404(Category, name__iexact=category_name)
     
-    # Fetch NGOs associated with the selected category
-    ngos = NGO.objects.filter(category=category)
-    
-    # Pass the selected category and the list of NGOs to the template
-    return render(request, 'ngos_by_category.html', {'ngos': ngos, 'selected_category': category.name})
+    # Get the city by the provided name or return a 404
+    city = get_object_or_404(City, name__iexact=city_name)
 
+    # Fetch NGOs associated with the selected category and city
+    ngos = NGO.objects.filter(category=category, city=city)  # Make sure your NGO model has a city field
 
-
+    # Pass the selected category, city, and the list of NGOs to the template
+    return render(request, 'ngos_by_category_and_city.html', {
+        'ngos': ngos,
+        'selected_category': category.name,
+        'selected_city': city.name
+    })
     
 
 def donor_form(request, ngo_id):
