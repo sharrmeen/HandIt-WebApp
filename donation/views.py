@@ -233,3 +233,4 @@ def ngos_by_category(request, category_name):
     
     # Pass the selected category and the list of NGOs to the template
     return render(request, 'ngos_by_category.html', {'ngos': ngos, 'selected_category': category.name})
+
