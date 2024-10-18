@@ -16,6 +16,41 @@
         <link href="../static/css/bootstrap-icons.css" rel="stylesheet">
 
         <link href="../static/css/templatemo-kind-heart-charity.css" rel="stylesheet"> 
+
+        <style>
+           .row {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap if needed */
+    justify-content: center;
+}
+
+.custom-block-wrap {
+    display: flex;
+    flex-direction: column; /* Arrange children in a column */
+    height: 100%; /* Ensure the wrapper takes full height */
+    margin: 10px;
+}
+
+.custom-block {
+    display: flex;
+    flex-direction: column; /* Stack the content vertically */
+    justify-content: space-between; /* Space elements evenly */
+    height: 100%; /* Make the card block take the full height */
+}
+
+.custom-block-body {
+    flex-grow: 1; /* Allow the body to grow to fill the available space */
+    display: flex; /* Use flex to align contents */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Space out contents */
+}
+
+.uniform-card {
+    height: 300px; /* Set a fixed height for all cards */
+}
+
+
+        </style>
 <!--
 
 TemplateMo 581 Kind Heart Charity
@@ -332,105 +367,80 @@ https://templatemo.com/tm-581-kind-heart-charity
             <section class="section-padding" id="section_3">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-lg-12 col-12 text-center mb-4">
                             <h2>Our Causes</h2>
                         </div>
-
+            
                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                             <div class="custom-block-wrap">
                                 <img src="../static/images/causes/Feeding-India-Donate-Food (1).jpeg" class="custom-block-image img-fluid" alt="">
-
                                 <div class="custom-block">
-                                    <div class="custom-block-body">
+                                    <div class="custom-block-body uniform-card">
                                         <h5 class="mb-3">Zero Hunger</h5>
-
-                                        <p>Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito</p>
-
-                                
+                                        <p>Your food donation can provide essential meals to those in need. Every contribution—whether it's canned goods, fresh produce, or prepared meals—helps create a world with fewer hungry people.</p>
                                     </div>
-
-                                    <a href = "{% url 'donor_login'%}" class="custom-btn btn">Donate now</a>
+                                    <a href="{% url 'donor_login' %}" class="custom-btn btn">Donate now</a>
                                 </div>
                             </div>
                         </div>
-
+            
                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                             <div class="custom-block-wrap">
                                 <img src="../static/images/causes/soundofhope.jpg" class="custom-block-image img-fluid" alt="">
-
                                 <div class="custom-block">
-                                    <div class="custom-block-body">
+                                    <div class="custom-block-body uniform-card">
                                         <h5 class="mb-3">Clothe Kindness</h5>
-
-                                        <p>Sed leo nisl, posuere at molestie ac, suscipit auctor mauris. Etiam quis metus tempor</p>
-
-                                        
+                                        <p>Many individuals lack proper clothing, especially during colder months. By donating gently used or new clothing, you can help provide warmth, comfort, and dignity to those in need.</p>
                                     </div>
-
-                                    <a href = "{% url 'donor_login'%}" class="custom-btn btn">Donate now</a>
+                                    <a href="{% url 'donor_login' %}" class="custom-btn btn">Donate now</a>
                                 </div>
                             </div>
                         </div>
-
+            
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="custom-block-wrap">
-                                <img src="../static/images/causes/african-woman-pouring-water-recipient-outdoors.jpg" class="custom-block-image img-fluid" alt="">
-
+                                <img src="../static/images/book_card.jpg" class="custom-block-image img-fluid" alt="">
                                 <div class="custom-block">
-                                    <div class="custom-block-body">
+                                    <div class="custom-block-body uniform-card">
                                         <h5 class="mb-3">Igniting Minds</h5>
-
-                                        <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus</p>
-
+                                        <p>Books open doors to knowledge and opportunity. By donating new or gently used books, you provide access to education, imagination, and personal growth for those who need it most.</p>
                                     </div>
-
-                                    <a href = "{% url 'donor_login'%}" class="custom-btn btn">Donate now</a>
+                                    <a href="{% url 'donor_login' %}" class="custom-btn btn">Donate now</a>
                                 </div>
                             </div>
                         </div>
-
+            
                         <div style="height: 20px;"></div>
-
+            
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="custom-block-wrap">
-                                <img src="../static/images/causes/african-woman-pouring-water-recipient-outdoors.jpg" class="custom-block-image img-fluid" alt="">
-
+                                <img src="../static/images/2.webp" class="custom-block-image img-fluid" alt="">
                                 <div class="custom-block">
-                                    <div class="custom-block-body">
+                                    <div class="custom-block-body uniform-card">
                                         <h5 class="mb-3">Tech for Tomorrow</h5>
-
-                                        <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus</p>
-
+                                        <p>E-waste contains valuable materials that can be recycled and harmful substances that must be disposed of responsibly. By donating old electronics, you help reduce environmental impact while giving unused devices a second life.</p>
                                     </div>
-
-                                    <a href = "{% url 'donor_login'%}" class="custom-btn btn">Donate now</a>
+                                    <a href="{% url 'donor_login' %}" class="custom-btn btn">Donate now</a>
                                 </div>
                             </div>
                         </div>
-
-                        
-
+            
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="custom-block-wrap">
-                                <img src="../static/images/causes/african-woman-pouring-water-recipient-outdoors.jpg" class="custom-block-image img-fluid" alt="">
-
+                                <img src="../static/images/money_card.jpg" class="custom-block-image img-fluid" alt="">
                                 <div class="custom-block">
-                                    <div class="custom-block-body">
+                                    <div class="custom-block-body uniform-card">
                                         <h5 class="mb-3">Empowering Change</h5>
-
-                                        <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus</p>
-
+                                        <p>A monetary donation offers the flexibility to address urgent needs quickly and effectively. Whether it's funding essential programs, providing emergency relief, or supporting long-term development, your financial contribution can bring about positive change.</p>
                                     </div>
-
-                                    <a href = "{% url 'donor_login' %}" class="custom-btn btn">Donate now</a>
+                                    <a href="{% url 'donor_login' %}" class="custom-btn btn">Donate now</a>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
+            
 
             
 

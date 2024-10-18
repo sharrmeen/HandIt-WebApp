@@ -82,7 +82,8 @@ $('.login-reg-panel input[type="radio"]').on('change', function() {
 {% if error == "no" %}
 <script>
   alert('Logged In Successfully');
-  window.location = ("{% url 'ngo_home' %}");
+  window.location = ("{% url 'ngo_home' ngo_id=ngo.id %}");
+;
 </script>
 {% endif %}
 

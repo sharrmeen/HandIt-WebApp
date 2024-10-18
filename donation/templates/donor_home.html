@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
         }
-
+    
         h1 {
             text-align: center;
             padding-top: 20px;
@@ -20,146 +20,225 @@
             color: #444;
             margin-bottom: 20px;
         }
-
+    
         .container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             padding: 20px;
         }
-
+    
         .category-box {
-            position: relative; /* Allows for absolute positioning of the text */
+            position: relative;
             background-color: #fff;
             border: 2px solid #ddd;
             border-radius: 15px;
             width: 250px;
-            height: 200px; /* Fixed height for consistent sizing */
+            height: 200px;
             margin: 15px;
-            overflow: hidden; /* Ensures that the image doesn't overflow */
+            overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.4s ease;
+            cursor: pointer; /* Change cursor to pointer */
         }
-
+    
         .category-box img {
             width: 100%;
-            height: 100%; /* Ensures the image covers the entire box */
-            object-fit: cover; /* Ensures the image maintains its aspect ratio */
+            height: 100%;
+            object-fit: cover;
         }
-
+    
         .category-box span {
-            position: absolute; /* Positioning the text over the image */
-            bottom: 10px; /* Adjusts the vertical position */
-            left: 10px; /* Adjusts the horizontal position */
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
             color: #fff;
             padding: 5px 10px;
             border-radius: 5px;
             font-size: 24px;
             font-weight: bold;
-            z-index: 1; /* Ensures the text appears above the image */
         }
-
+    
         .category-box:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-
-        /* Toggle Button Styling */
-        .toggle-btn {
-            display: block;
-            background-color: #28a745;
-            color: #fff;
-            text-align: center;
+    
+        /* Sidebar styling */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background-color: #fff; /* Light background */
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            transition: 0.5s;
+            z-index: 1000;
+            border-right: 1px solid #ddd;
+        }
+    
+        .sidebar a {
             padding: 10px 15px;
-            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #444;
+            display: block;
+            transition: 0.3s;
+        }
+    
+        .sidebar a:hover {
+            color: #007bff;
+        }
+    
+        .open-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px; /* Smooth corners */
             cursor: pointer;
-            margin: 0 auto;
-            width: 200px;
             transition: background-color 0.3s ease;
         }
-
-        .toggle-btn:hover {
+    
+        .open-btn:hover {
             background-color: #218838;
         }
-
-        .donor-info {
-            display: none;
-            margin: 20px auto;
-            width: 300px;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border: 2px solid #ddd;
-            border-radius: 10px;
+    
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 30px;
+        }
+    
+        /* Dropdown for Cities */
+        .city-dropdown {
+            margin: 20px 0;
             text-align: center;
         }
-
-        .donor-info p {
-            margin: 10px 0;
+    
+        .city-dropdown label {
             font-size: 18px;
+            margin-right: 10px;
         }
-
+    
+        .city-dropdown select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px; /* Set width to your preference */
+        }
+    
+        /* Donation History Button Styling */
+        .donation-history-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    
+        .donation-history-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Button to open the sidebar -->
+    <button class="open-btn" onclick="openSidebar()">Show Donor Info</button>
+
+    <!-- Sidebar content -->
+    <div id="donorSidebar" class="sidebar">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeSidebar()">&times;</a>
+        <div style="padding: 20px;">
+            <p><strong>Donor Name:</strong> {{ donor_name }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+        </div>
+    </div>
+
+    <!-- Donation History Button -->
+    <a href="{% url 'donation_history' %}" class="donation-history-btn">Donation History</a>
+
     <h1>Donate to a Cause</h1>
 
-    <!-- Toggle Button for Donor Info -->
-    <div class="toggle-btn" onclick="toggleDonorInfo()">Show Donor Info</div>
-
-    <!-- Donor Info Section -->
-    <div class="donor-info" id="donor-info">
-        <p><strong>Donor Name:</strong> John Doe</p>
-        <p><strong>Email:</strong> johndoe@example.com</p>
+    <!-- Dropdown for Cities -->
+    <div class="city-dropdown">
+        <label for="city" class="form-label">Select City</label>
+        <select id="city" name="city" class="form-select">
+            <option value="">Select City</option>
+            {% for city in cities %}
+                <option value="{{ city.name }}">{{ city.name }}</option>
+            {% endfor %}
+        </select>
     </div>
 
     <div class="container">
-        <a href="{% url 'ngos_by_category' 'food' %}">
+        <a href="#" onclick="filterNGOs('food')">
             <div class="category-box">
                 <img src="{% static 'images/foods.jpg' %}" alt="Food Donation">
                 <span>Food</span>
             </div>
         </a>
-        <a href="{% url 'ngos_by_category' 'book' %}">
+        <a href="#" onclick="filterNGOs('book')">
             <div class="category-box">
                 <img src="{% static 'images/books.jpg' %}" alt="Book Donation">
                 <span>Books</span>
             </div>
         </a>
-        <a href="{% url 'ngos_by_category' 'clothes' %}">
+        <a href="#" onclick="filterNGOs('clothes')">
             <div class="category-box">
                 <img src="{% static 'images/clothes.jpg' %}" alt="Clothes Donation">
                 <span>Clothes</span>
             </div>
         </a>
-        <a href="{% url 'ngos_by_category' 'e-waste' %}">
+        <a href="#" onclick="filterNGOs('e-waste')">
             <div class="category-box">
                 <img src="{% static 'images/ewaste.jpg' %}" alt="E-Waste Donation">
                 <span>E-Waste</span>
             </div>
         </a>
-        <a href="{% url 'ngos_by_category' 'money' %}">
+        <a href="#" onclick="filterNGOs('money')">
             <div class="category-box">
                 <img src="{% static 'images/money.png' %}" alt="Monetary Donation">
                 <span>Money</span>
             </div>
         </a>
     </div>
-    
-    <!-- JavaScript for Toggle Function -->
+
+    <!-- JavaScript for sidebar toggle -->
     <script>
-        function toggleDonorInfo() {
-            var donorInfo = document.getElementById("donor-info");
-            if (donorInfo.style.display === "none" || donorInfo.style.display === "") {
-                donorInfo.style.display = "block";
+        function openSidebar() {
+            document.getElementById("donorSidebar").style.left = "0";
+        }
+
+        function closeSidebar() {
+            document.getElementById("donorSidebar").style.left = "-250px";
+        }
+
+        function filterNGOs(category) {
+            const city = document.getElementById("city").value;
+            if (city) {
+                // Redirect to the URL for filtering NGOs
+                window.location.href = `/ngos_by_category_and_city/${category}/${city}/`;
             } else {
-                donorInfo.style.display = "none";
+                alert('Please select a city first.');
             }
         }
     </script>
 
 </body>
 </html>
-
-

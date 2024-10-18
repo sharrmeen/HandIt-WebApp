@@ -19,6 +19,7 @@ from django.urls import path
 from donation.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from donation import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("",index,name="index"),
@@ -30,14 +31,17 @@ urlpatterns = [
     path("ngo_reg",ngo_reg,name="ngo_reg"),
     path("donor_home",donor_home,name="donor_home"),
     path("admin_home",admin_home,name="admin_home"),
-    path("ngo_home",ngo_home,name="ngo_home"),
+    path('ngo_home/<int:ngo_id>/', ngo_home, name='ngo_home'),
     path("new_ngo",new_ngo,name="new_ngo"),
     path("view_ngodetail/<int:pid>",view_ngodetail,name="view_ngodetail"),
     path("accepted_ngo",accepted_ngo,name="accepted_ngo"),
     path("all_ngo",all_ngo,name="all_ngo"),
     path("delete_ngo/<int:pid>",delete_ngo,name="delete_ngo"),
-    path('category/<str:category_name>/', ngos_by_category, name='ngos_by_category'),
+    path('ngos_by_category_and_city/<str:category_name>/<str:city_name>/', views.ngos_by_category_and_city, name='ngos_by_category_and_city'),
+    path('ngo/<int:ngo_id>/home/', ngo_home, name='ngo_home'),
+    path('donor_form/<int:ngo_id>/',donor_form, name='donor_form'),
     path("donation_history/", donation_history, name="donation_history"),
+    path("donation/<int:donation_id>/", donation_detail, name="donation_detail"),
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

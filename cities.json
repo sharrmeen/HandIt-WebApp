@@ -1,0 +1,15 @@
+[
+    {"model": "donation.city", "pk": 1, "fields": {"name": "Mumbai"}},
+    {"model": "donation.city", "pk": 2, "fields": {"name": "Delhi"}},
+    {"model": "donation.city", "pk": 3, "fields": {"name": "Bengaluru"}},
+    {"model": "donation.city", "pk": 4, "fields": {"name": "Hyderabad"}},
+    {"model": "donation.city", "pk": 5, "fields": {"name": "Ahmedabad"}},
+    {"model": "donation.city", "pk": 6, "fields": {"name": "Chennai"}},
+    {"model": "donation.city", "pk": 7, "fields": {"name": "Kolkata"}},
+    {"model": "donation.city", "pk": 8, "fields": {"name": "Pune"}},
+    {"model": "donation.city", "pk": 9, "fields": {"name": "Jaipur"}},
+    {"model": "donation.city", "pk": 10, "fields": {"name": "Surat"}},
+    {"model": "donation.city", "pk": 11, "fields": {"name": "Thane"}},
+    {"model": "donation.city", "pk": 12, "fields": {"name": "Navi Mumbai"}}
+    
+]

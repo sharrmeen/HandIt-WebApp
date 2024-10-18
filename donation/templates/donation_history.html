@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation History</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+
+        .history-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .history-card h5 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 2px solid green;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px;
+        }
+
+        table th {
+            background-color: #4d8c4c;
+            color: black;
+            font-weight: bold;
+        }
+
+        table td {
+            background-color: #ffffff;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #e0ffe0;
+        }
+
+        .text-primary {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .history-card {
+                padding: 10px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="history-card">
+                <h5 class="p-2">Donation History</h5>
+                <div class="container-fluid">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Sr. No.</th>
+                                <th>Donor Name</th>
+                                <th>Donation Type</th> <!-- New Column for Donation Type -->
+                                <th>Donation Date</th>
+                                <th>Status</th>
+                                <th>Action</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in donation %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ i.donationname }}</td>
+                                <td>{{ i.donation_type }}</td> <!-- Display Donation Type -->
+                                <td>{{ i.Donationdate|date:"Y-m-d H:i:s" }}</td> <!-- Formatting the date -->
+                                <td>{{ i.status }}</td>
+                                <td><a href="{% url 'donation_detail' i.id %}" class="text-primary">View Details</a></td> <!-- Link to Donation Detail -->
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

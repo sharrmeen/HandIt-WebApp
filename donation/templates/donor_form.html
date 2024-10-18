@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate to {{ ngo.user.first_name }}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        body {
+            background-color: #e9f8e6; /* Pastel green background */
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        .form-title {
+            color: #4d8c4c;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .btn-success {
+            background-color: #4d8c4c;
+            border-color: #4d8c4c;
+        }
+
+        .btn-success:hover {
+            background-color: #3b703b;
+            border-color: #3b703b;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-container">
+                <h2 class="form-title">Donate to {{ ngo.user.first_name }}</h2>
+                <p><strong>Contact:</strong> {{ ngo.contact }}</p>
+                <p><strong>Address:</strong> {{ ngo.address }}</p>
+                <p>{{ ngo.aboutme }}</p>
+                
+                <!-- Donation Form -->
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <!-- Donor Name -->
+                    <div class="mb-3">
+                        <label for="donor_name" class="form-label">Donor Name</label>
+                        <input type="text" class="form-control" id="donor_name" name="donor_name" required>
+                    </div>
+                    
+                    <!-- Donor Address -->
+                    <div class="mb-3">
+                        <label for="donor_address" class="form-label">Donor Address</label>
+                        <textarea class="form-control" id="donor_address" name="donor_address" rows="3" required></textarea>
+                    </div>
+                    
+                    <!-- Donor Phone Number -->
+                    <div class="mb-3">
+                        <label for="donor_phone" class="form-label">Donor Phone Number</label>
+                        <input type="tel" class="form-control" id="donor_phone" name="donor_phone" pattern="[0-9]{10}" maxlength="10" required>
+                        <small class="text-muted">Enter a valid 10-digit phone number.</small>
+                    </div>
+
+                    <!-- Donation Type -->
+                    <div class="mb-3">
+                        <label for="donation_type" class="form-label">Donation Type</label>
+                        <select class="form-select" id="donation_type" name="donation_type" required>
+                            <option value="food">Food</option>
+                            <option value="book">Book</option> <!-- Change value from 'food' to 'book' -->
+                            <option value="money">Money</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="e-waste">E-Waste</option>
+                        </select>
+                    </div>
+
+                    <!-- Donation Photo -->
+                    <div class="mb-3">
+                        <label for="donation_photo" class="form-label">Donation Photo</label>
+                        <input class="form-control" type="file" id="donation_photo" name="donation_photo" accept="image/*" required>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">Submit Donation</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

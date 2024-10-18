@@ -4,14 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGOs in {{ selected_category | title }}</title>
+    <title>NGOs in {{ selected_category | title }} in {{ selected_city | title }}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <style>
         body {
             background-color: #e9f8e6; /* Pastel green background */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         .card {
             width: 18rem;
             margin-bottom: 20px;
@@ -21,18 +20,15 @@
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative; /* For the overlay effect */
         }
-
         .card:hover {
             transform: translateY(-5px); /* Lift effect */
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
-
         .card-img-top {
             width: 100%; /* Fit the image inside the card */
             height: auto; /* Maintain aspect ratio */
             object-fit: cover; /* Crop the image to cover the area */
         }
-
         .gradient-overlay {
             position: absolute;
             bottom: 0; /* Position at the bottom */
@@ -44,29 +40,23 @@
             opacity: 0; /* Start as invisible */
             transition: opacity 0.3s;
         }
-
         .card:hover .gradient-overlay {
             opacity: 1; /* Show overlay on hover */
         }
-
         .card-body {
             background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
             border-radius: 0 0 15px 15px; /* Rounded corners at the bottom */
         }
-
         .profile-pic {
             border-radius: 15px 15px 0 0; /* Round top corners */
         }
-
         h5.card-title {
             font-weight: bold;
             color: #4d8c4c; /* Darker green for title */
         }
-
         p.card-text {
             color: #555; /* Grey for text */
         }
-
         .container h2 {
             color: #4d8c4c; /* Title color */
             margin-bottom: 40px;
@@ -77,30 +67,28 @@
 
 <div class="container mt-5">
     <h2 class="mb-4 text-center" style="background-color: rgb(181, 219, 197);">
-        {% if selected_category %}
-            NGOs accepting {{ selected_category | title }}
-        {% else %}
-            All NGOs
-        {% endif %}
+        NGOs accepting donations for {{ selected_category | title }} in {{ selected_city | title }}
     </h2>
 
     <div class="row">
         {% for ngo in ngos %}
             <div class="col-md-4 d-flex align-items-stretch">
-                <div class="card">
-                    <img class="card-img-top profile-pic" src="{{ ngo.userpic.url }}" alt="Profile picture of {{ ngo.user.first_name }}">
-                    <div class="gradient-overlay"></div> <!-- Overlay for effect -->
-                    <div class="card-body">
-                        <h5 class="card-title">{{ ngo.user.first_name }}</h5>
-                        <p class="card-text">{{ ngo.aboutme|truncatewords:15 }}</p>
-                        <p><strong>Contact:</strong> {{ ngo.contact }}</p>
-                        <p><strong>Address:</strong> {{ ngo.address }}</p>
+                <a href="{% url 'donor_form' ngo.id %}" class="text-decoration-none">
+                    <div class="card">
+                        <img class="card-img-top profile-pic" src="{{ ngo.userpic.url }}" alt="Profile picture of {{ ngo.user.first_name }}">
+                        <div class="gradient-overlay"></div> <!-- Overlay for effect -->
+                        <div class="card-body">
+                            <h5 class="card-title">{{ ngo.user.first_name }}</h5>
+                            <p class="card-text">{{ ngo.aboutme|truncatewords:15 }}</p>
+                            <p><strong>Contact:</strong> {{ ngo.contact }}</p>
+                            <p><strong>Address:</strong> {{ ngo.address }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         {% empty %}
             <div class="col-12 text-center">
-                <p>No NGOs found in this category</p>
+                <p>No NGOs found in this category and city</p>
             </div>
         {% endfor %}
     </div>
