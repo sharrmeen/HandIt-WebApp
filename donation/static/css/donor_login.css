@@ -122,7 +122,7 @@ h2 {
     align-items:flex-end;
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 200px;
+    margin-left: 150px;
     color: #5a6f80;
     text-transform: uppercase;
     font-family: "Metropolis";
@@ -148,7 +148,7 @@ h2 {
     height: 50px;
     margin: 30px auto; /* Centers horizontally */
     display: flex;
-    margin-left: 100px;
+    margin-left: 80px;
     border-bottom: 2px solid #5a6f80;
 }
 
@@ -212,7 +212,7 @@ h2 {
     align-items: center;
     justify-content: center;
     margin-top: 100px;
-    margin-left: 100px;
+    margin-left: 80px;
 }
 
 .btn:hover {
@@ -229,7 +229,7 @@ h2 {
 
 .login-register p {
     
-    margin-left: 200px;
+    margin-left: 150px;
 }
 
 .login-register a {

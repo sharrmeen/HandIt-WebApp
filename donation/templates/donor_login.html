@@ -3,48 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/login.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Login Page</title>
+    <link rel="stylesheet" href="../static/css/donor_login.css">
+    <title>Donor Login</title>
 </head>
 <body>
-   <div class="login-reg-panel">
-            <div class="login-info-box">
-                <h2>Have an account?</h2>
-                <p>Sign-in now</p>
-                <label id="label-register" for="log-reg-show">Login</label>
-                <input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked">
-            </div>
-            <div class="register-info-box">
-                <h2>Don't have an account?</h2>
-                <p>Create a new account</p>
-                <a href="{% url 'donor_reg' %}"><label id="label-login">Register</label></a>
-                <input type="radio" name="active-log-panel" id="log-login-show">
+         <div class="wrapper">
+            <div class="inner">
+                
+                <div>                   
+                    <form method="POST"> 
+                        
+                        <h2>DONOR LOGIN</h2>
+                        {% csrf_token %} <!-- Important for security if you're using Django -->
+                        <div class="form-box login">
+                              <div class="input-box">
+                                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                                </svg></span>
+                                <input type="email" name="emailid" required>
+                                <label>Email</label>
+                              </div>
+                              <div class="input-box">
+                                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                                </svg></span>
+                                <input type="password" name="pwd" required>
+                                <label>Password</label>
+                              </div>
+                              <button type="submit" class="btn">Login</button>
+                              
+                            </form>
+                          </div>  
+                          <div class="login-register">
+                            <p>Don't have an account? 
+                              <a href="{% url 'donor_reg' %}" class="register-link">Register</a>
+                            </p>
+                          </div>      
             </div>
             
-            <div class="white-panel">
-              <div class="login-show">
-                <h2>Donor Login</h2>
-                <form method="POST"> 
-                    {% csrf_token %} <!-- Important for security if you're using Django -->
-                    <input type="email" placeholder="Email" name="emailid" required>
-                    <input type="password" placeholder="Password" name="pwd" required>
-                <div>
-                    <input class= "button-56"  type="submit" value="Login">
-                </div>
-                    <a href="">Forgot password?</a>
-              </div>
-                <div class="register-show">
-                    <h2>Register</h2>
-                    <input type="text" placeholder="Email">
-                    <input type="password" placeholder="Password">
-                    <input type="password" placeholder="Confirm Password">
-                    <input type="button" value="Register">
-                </div>
-            </div>
-        </div>
+          </div>
     
 </body>
 {% if error == "no" %}
