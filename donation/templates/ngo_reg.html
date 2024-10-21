@@ -41,9 +41,9 @@
 
     <div class="wrapper">
         <div class="inner">
-            <div class="image-holder">
+            <!-- <div class="image-holder">
                 <img src="{% static 'images/pexels-cottonbro-6591155 (2).jpg' %}" alt="NGO Registration Image">
-            </div>
+            </div> -->
 
             <form action="{% url 'ngo_reg' %}" method="post" enctype="multipart/form-data" name="signup" onsubmit="return checkPassword()">
                 {% csrf_token %}
