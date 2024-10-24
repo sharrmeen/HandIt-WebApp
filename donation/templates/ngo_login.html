@@ -3,81 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/login.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Login Page</title>
+    <link rel="stylesheet" href="../static/css/ngo_login.css">
+    <link rel="icon" type="image/png" href="../static/images/icons/image-removebg-preview(1)(1).png"/>
+    <link rel="icon" type="image/png" href="../static/images/icons/image-removebg-preview(1)(1).png"/>
+    
+    <title>NGO Login</title>
 </head>
 <body>
    
-   
-    <div class="login-reg-panel">
-            <div class="login-info-box">
-                <h2>Have an account?</h2>
-                <p>Sign-in now</p>
-                <label id="label-register" for="log-reg-show">NGO Login</label>
-                <input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked">
-            </div>
-                                
-            <div class="register-info-box">
-                <h2>Don't have an account?</h2>
-                <p>Create a new account</p>
-                <a href="{% url 'ngo_reg' %}"><label id="label-login">Register</label></a>
-                <input type="radio" name="active-log-panel" id="log-login-show">
-            </div>
-                                
-            <div class="white-panel">
-              <div class="login-show">
-                <h2>NGO Login</h2>
+    <div class="wrapper">
+        <div class="inner">
+            
+            <div>                   
                 <form method="POST"> 
+                    
+                    <h2>NGO LOGIN</h2>
                     {% csrf_token %} <!-- Important for security if you're using Django -->
-                    <input type="email" placeholder="Email" name="emailid" required>
-                    <input type="password" placeholder="Password" name="pwd" required>
-                    <input type="submit" value="Login">
-                </form>
-                <a href="">Forgot password?</a>
-              </div>
-                <div class="register-show">
-                    <h2>Register</h2>
-                    <input type="text" placeholder="Email">
-                    <input type="password" placeholder="Password">
-                    <input type="password" placeholder="Confirm Password">
-                    <input type="button" value="Register">
-                </div>
-            </div>
+                    <div class="form-box login">
+                          <div class="input-box">
+                            <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                            </svg></span>
+                            <input type="email" name="emailid" required>
+                            <label>Email</label>
+                          </div>
+                          <div class="input-box">
+                            <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                              <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                            </svg></span>
+                            <input type="password" name="pwd" required>
+                            <label>Password</label>
+                          </div>
+                          <button type="submit" class="btn">Login</button>
+                          
+                        </form>
+                      </div>  
+                      <div class="login-register">
+                        <p>Don't have an account? 
+                          <a href="{% url 'ngo_reg' %}" class="register-link">Register</a>
+                        </p>
+                      </div>      
         </div>
-    <script>
         
-    $(document).ready(function(){
-    $('.login-info-box').fadeOut();
-    $('.login-show').addClass('show-log-panel');
-});
+      </div>
+      
+ 
 
-
-$('.login-reg-panel input[type="radio"]').on('change', function() {
-    if($('#log-login-show').is(':checked')) {
-        $('.register-info-box').fadeOut(); 
-        $('.login-info-box').fadeIn();
-        
-        $('.white-panel').addClass('right-log');
-        $('.register-show').addClass('show-log-panel');
-        $('.login-show').removeClass('show-log-panel');
-        
-    }
-    else if($('#log-reg-show').is(':checked')) {
-        $('.register-info-box').fadeIn();
-        $('.login-info-box').fadeOut();
-        
-        $('.white-panel').removeClass('right-log');
-        
-        $('.login-show').addClass('show-log-panel');
-        $('.register-show').removeClass('show-log-panel');
-    }
-});
-  
-
-    </script>
+    
 </body>
 {% if error == "no" %}
 <script>

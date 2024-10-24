@@ -180,9 +180,11 @@ def donor_home(request):
     context = {
         'donor': donor,
         'donor_name': request.user.get_full_name(),  # Fetches the full name
-        'email': str(donor)  # Fetches the email
+        'email': request.user.username,  # Fetches the email directly from user, in our case username is mailid if we want to change it "change in donor_reg views"
+        'cities': cities
     }
-    return render(request, 'donor_home.html', {'cities': cities, 'donor': donor})
+    return render(request, 'donor_home.html', context)
+
 
 def ngo_home(request, ngo_id):
     if not request.user.is_authenticated:
