@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -120,3 +121,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+logging.basicConfig(level=logging.DEBUG)
+DEBUG = True
+# Email backend configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # This tells Django to use SMTP to send emails
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # SMTP server for Gmail
+EMAIL_PORT = 587  # Port number for the Gmail SMTP server
+EMAIL_USE_TLS = True  # This enables TLS (Transport Layer Security) for secure email transmission
+EMAIL_HOST_USER = 'handit.pvt.ltd@gmail.com'  # Replace this with your Gmail address
+EMAIL_HOST_PASSWORD = 'jzto rbux argx jwsc'  # Replace this with the password of your Gmail account
+DEFAULT_FROM_EMAIL = 'handit.pvt.ltd@gmail.com'  # Email address that will appear in the "From" field of the email
+

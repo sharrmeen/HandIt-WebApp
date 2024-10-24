@@ -9,7 +9,16 @@ from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 from django.db import transaction  
 import logging
-
+from django.contrib.auth.models import User
+from .email_utils import send_reset_email
+import secrets
+from django.core.mail import send_mail
+from django.urls import reverse
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.template.loader import render_to_string
+from django.contrib import messages
+import uuid
 
 # Create your views here.
 
@@ -45,15 +54,13 @@ def ngo_login(request):
                 user1 = NGO.objects.get(user=user)  # Get the NGO object for this user
                 if user1.status != "Pending":
                     login(request, user)  # Log in the user
-
-                    # Redirect to ngo_home with the ngo_id
-                    return redirect('ngo_home', ngo_id=user1.id)
+                    return redirect('ngo_home', ngo_id=user1.id)  # Redirect to NGO home
                 else:
-                    error = "not"
+                    error = "not"  # Pending status
             except NGO.DoesNotExist:
-                error = "yes"
+                error = "yes"  # User not found
         else:
-            error = "yes"
+            error = "yes"  # Invalid credentials
     
     return render(request, 'ngo_login.html', locals())
 
@@ -96,8 +103,9 @@ def donor_reg(request):
             error = "Please enter a valid 10-digit contact number."
         else:
             try:
-                user = User.objects.create_user(first_name=fn, last_name=ln, username=em, password=pwd)
-                Donor.objects.create(user=user, contact=contact, userpic=userpic, address=address)
+                # Create a new user and donor entry
+                user = User.objects.create_user(first_name=fn, last_name=ln, username=em, password=pwd, email=em)  # Save email in User model
+                Donor.objects.create(user=user, contact=contact, userpic=userpic, address=address, email=em)  # Save email in Donor model
                 error = "no"
                 return redirect('donor_login')  # Redirect to the login page after successful registration
             except Exception as e:
@@ -118,7 +126,7 @@ def ngo_reg(request):
         ln = request.POST.get('last_name')
         pwd = request.POST.get('pwd')
         contact = request.POST.get('contact_number')
-        em = request.POST.get('emailid')
+        em = request.POST.get('emailid')  # Capture the email address
         address = request.POST.get('address')
         about = request.POST.get('aboutme')
         selected_categories = request.POST.getlist('categories')  # Get list of selected category IDs
@@ -140,7 +148,12 @@ def ngo_reg(request):
                 # Ensure the following block runs as a transaction
                 with transaction.atomic():
                     # Create User
-                    user = User.objects.create_user(first_name=fn, last_name=ln, username=em, password=pwd)
+                    user = User.objects.create_user(
+                        first_name=fn,
+                        last_name=ln,
+                        username=em,  # Email used as username
+                        password=pwd
+                    )
                     
                     city_instance = City.objects.get(id=city_id)
 
@@ -149,6 +162,7 @@ def ngo_reg(request):
                         user=user,
                         contact=contact,
                         address=address,
+                        email=em,  # Save the email in the NGO model
                         userpic=profile_pic,  # Correct field name
                         idpic=id_pic,  # Correct field name
                         aboutme=about,
@@ -171,6 +185,18 @@ def ngo_reg(request):
 
     return render(request, 'ngo_reg.html', {'error': error, 'categories': categories, 'cities': cities})
 
+from django.core.mail import send_mail
+from django.http import HttpResponse
+
+def test_email(request):
+    send_mail(
+        'Test Subject',
+        'This is a test email body.',
+        'your_gmail_account@gmail.com',  # From email
+        ['recipient_email@example.com'],  # To email
+        fail_silently=False,
+    )
+    return HttpResponse("Email sent successfully")
 
 
 @login_required
@@ -180,7 +206,7 @@ def donor_home(request):
     context = {
         'donor': donor,
         'donor_name': request.user.get_full_name(),  # Fetches the full name
-        'email': request.user.username,  # Fetches the email directly from user, in our case username is mailid if we want to change it "change in donor_reg views"
+        'email': request.user.email,  # Fetches the email directly from user, in our case username is mailid if we want to change it "change in donor_reg views"
         'cities': cities
     }
     return render(request, 'donor_home.html', context)
@@ -313,3 +339,36 @@ def donation_history(request):
 def donation_detail(request, donation_id):
     donation = get_object_or_404(Donation, id=donation_id)
     return render(request, 'donation_detail.html', {'donation': donation})
+
+def forgot_password(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        try:
+            user = User.objects.get(email=email)
+            # Generate a unique token
+            token = uuid.uuid4()
+            # Send email with the reset link
+            reset_link = request.build_absolute_uri(reverse('reset_password', kwargs={'token': token}))
+            subject = "Password Reset Request"
+            message = render_to_string('forgot_password_email.html', {'reset_link': reset_link})
+            send_mail(subject, message, 'your_email@example.com', [email])  # Change to your email
+            messages.success(request, "Password reset link sent to your email.")
+            return redirect('forgot_password')  # Redirect to the same page after sending email
+        except User.DoesNotExist:
+            messages.error(request, "No user found with this email address.")
+    return render(request, 'forgot_password.html')
+
+
+def reset_password(request, token):
+    if request.method == 'POST':
+        new_password = request.POST['new_password']
+        email = request.POST['email']  # Ensure to get email
+        try:
+            user = User.objects.get(email=email)
+            user.set_password(new_password)
+            user.save()
+            messages.success(request, "Your password has been reset successfully.")
+            return redirect('ngo_login')  # Redirect to login page after password reset
+        except User.DoesNotExist:
+            messages.error(request, "Invalid token.")
+    return render(request, 'reset_password.html', {'token': token})
