@@ -25,6 +25,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("",index,name="index"),
+    path("index.html", index, name="index_html"),
     path("all_logins",all_logins,name="all_logins"),
     path("donor_login",donor_login,name="donor_login"),
     path("ngo_login",ngo_login,name="ngo_login"),
