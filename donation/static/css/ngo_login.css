@@ -243,3 +243,10 @@ h2 {
 .login-register a:hover {
     text-decoration: underline;
 }
+
+.forgot-password {
+    font-size: 15px !important;
+    color: #5a6f80;
+    margin-left: 150px;
+    margin: 25px 0 10px;
+}
