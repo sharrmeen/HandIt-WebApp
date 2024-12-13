@@ -40,6 +40,7 @@ MIDDLEWARE = [
 
 # Use Whitenoise to compress static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_MANIFEST_STRICT = False
 
 
 INSTALLED_APPS = [
