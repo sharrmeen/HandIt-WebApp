@@ -6,42 +6,7 @@
     <link rel="stylesheet" href="../static/css/ngo_login.css">
     <link rel="icon" type="image/png" href="../static/images/icons/image-removebg-preview(1)(1).png"/>
     <title>NGO Login</title>
-    <style>
-        /* Updated styles */
-        .forgot-password {
-            text-align: right;
-            font-size: 0.8em; /* Smaller size for Forgot Password */
-            margin-top: 10px;
-            color: #007bff; /* Lighter shade of blue for Forgot Password */
-            text-decoration: none;
-        }
-
-        .forgot-password:hover {
-            color: #0056b3; /* Darker shade on hover */
-        }
-
-        .login-register {
-            margin-top: 15px;
-            text-align: center;
-        }
-
-        .register-link {
-            font-size: 1.1em; /* Bigger size for Register button */
-            color: #007bff; /* Consistent color with other elements */
-            text-decoration: none;
-            font-weight: bold; /* Bold to stand out */
-        }
-
-        .register-link:hover {
-            color: #0056b3; /* Darker shade on hover */
-        }
-
-        .btn {
-            width: 100%; /* Full width for Login button */
-            margin-top: 15px;
-        }
-    </style>
-</head>
+    </head>
 <body>
     <div class="wrapper">
         <div class="inner">
@@ -77,7 +42,7 @@
                     </div>
 
                     <!-- Forgot Password Link smaller and below Register -->
-                    <div class="forgot-password">
+                    <div class="forgot-password" style = "font-size: 15px">
                         <a href="{% url 'forgot_password' %}">Forgot Password?</a>
                     </div>
                 </div>  
