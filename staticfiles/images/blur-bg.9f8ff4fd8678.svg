@@ -1,0 +1,28 @@
+<svg width="1440" height="1024" viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="blurFilter" x="0" y="0" width="100%" height="100%">
+      <feGaussianBlur stdDeviation="30" /> <!-- Adjust stdDeviation for blur intensity -->
+    </filter>
+  </defs>
+
+  <g filter="url(#blurFilter)">
+    <g clip-path="url(#clip0_1_2)">
+      <rect width="1440" height="1024" fill="#F0F8FF"/>
+      <ellipse cx="0.5" rx="267.5" ry="264" fill="#5BC1AC"/>
+      <ellipse cy="773" rx="150" ry="153" fill="#597081"/>
+      <path d="M112 773C112 835.408 61.8559 886 0 886C-61.8559 886 -112 835.408 -112 773C-112 710.592 -61.8559 660 0 660C61.8559 660 112 710.592 112 773Z" fill="#F0F8FF"/>
+      <ellipse cx="405" cy="585.5" rx="74" ry="73.5" fill="#5BC1AC"/>
+      <ellipse cx="838" cy="264.5" rx="217" ry="218.5" fill="#597081"/>
+      <ellipse cx="838" cy="264" rx="175" ry="176" fill="#F0F8FF"/>
+      <ellipse cx="1165" cy="748.5" rx="168" ry="162.5" fill="#597081"/>
+      <ellipse cx="1365" cy="307.5" rx="117" ry="115.5" fill="#5BC1AC"/>
+      <circle cx="858.5" cy="990.5" r="79.5" fill="#5BC1AC"/>
+      <circle cx="858.5" cy="990.5" r="52.5" fill="white"/>
+    </g>
+  </g>
+  <defs>
+    <clipPath id="clip0_1_2">
+      <rect width="1440" height="1024" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>

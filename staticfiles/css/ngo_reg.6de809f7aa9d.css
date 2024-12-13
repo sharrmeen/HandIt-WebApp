@@ -1,0 +1,284 @@
+@font-face {
+    font-family: 'Metropolis';
+    src: url("../fonts/Metropolis/Metropolis-Regular.f94100864838.woff2") format('woff2'),
+        url("../fonts/Metropolis/Metropolis-Regular.867ae290b266.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Metropolis';
+    src: url("../fonts/Metropolis/Metropolis-Light.d0f9816d3bd9.woff2") format('woff2'),
+        url("../fonts/Metropolis/Metropolis-Light.ed49461a0796.woff") format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Metropolis';
+    src: url("../fonts/Metropolis/Metropolis-SemiBold.d731fbae4bde.woff2") format('woff2'),
+        url("../fonts/Metropolis/Metropolis-SemiBold.598f348de6e3.woff") format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Metropolis';
+    src: url("../fonts/Metropolis/Metropolis-Bold.2a2d4461c922.woff2") format('woff2'),
+        url("../fonts/Metropolis/Metropolis-Bold.7807d92adbb7.woff") format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Base styles */
+
+body {
+    font-family: "Metropolis";
+    margin: 0;
+    font-size: 15px;
+    color: #323232;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+p, h1, h2, h4, h5, h6, ul {
+    margin: 0;
+}
+
+ul {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+input, textarea, select, button {
+    font-family: "Metropolis";
+    font-size: 15px;
+    color: #323232;
+}
+
+textarea {
+    resize: none;
+}
+
+:focus {
+    outline: none;
+}
+
+/* Wrapper and inner box */
+.wrapper {
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background: url("../images/bg-image-handit.52864a94ff14.svg") no-repeat center center;
+    background-size: cover;
+}
+
+.inner {
+    align-content: center;
+    width: 100%;
+    max-width: 1350px;
+    background: transparent !important;
+    backdrop-filter: blur(80px) !important;
+    margin: auto;
+    display: flex;
+    border-radius: 20px;
+    padding: 35px;
+    padding-bottom: 35px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+/* Form */
+form {
+    padding-top: 42px;
+    min-width: 76%;/* Matches donor page proportion */
+    margin-left: 150px; /* Shift to align with donor page */
+}
+
+h2 {
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 21px;
+    color: #5a6f80;
+    text-transform: uppercase;
+    font-family: "Metropolis";
+}
+
+/* Form row */
+.form-row {
+    align-content: center;
+    display: flex;
+    gap: 20px;
+}
+
+.form-control {
+    align-content: center;
+    display: block;
+    width: 100%;
+    padding: 17px 19px;
+    border: 1px solid #f0f8ff;
+    border-radius: 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.form-control:focus {
+    transition: 0.5s;
+    border-color: #323232;
+}
+
+/* Textarea styling */
+textarea.form-control {
+    padding: 13px;
+    resize: none;
+}
+
+/* Button styles */
+button {
+    height: 47px;
+    width: 100%;
+    background-color: #5a6f80;
+    color: white;
+    border: none;
+    border-radius: 23.7px;
+    font-family: "Metropolis";
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+button:hover {
+    background-color: #5bc1ac;
+}
+
+/* Error message */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Checkbox group */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.checkbox-group label {
+    margin-bottom: 5px;
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
+    .inner {
+        min-width: auto;
+        max-width: 660px;
+        flex-direction: column;
+    }
+
+    form {
+        padding-top: 20px;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .inner {
+        display: block;
+        padding: 20px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    form {
+        padding-top: 20px;
+        min-width: 100%;
+        margin-left: 0;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .image-holder img {
+        border-radius: 0;
+    }
+
+    .wrapper {
+        background: none;
+    }
+}
+
+
+input[type="file"]::before {
+    content: 'Choose File'; /* Custom button text */
+    display: inline-block; /* Inline block for centering */
+    background: #323232; /* Light gray background */
+    border: 1px solid #fff; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding */
+    text-align: center; /* Center text */
+    color: #fff; /* Gray text color */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* To position the custom button */
+input[type="file"]:hover::before {
+    background: #5bc1ac; /* Slightly darker on hover */
+}
+
+/* To maintain the appearance of the file input */
+input[type="file"]:focus::before {
+    outline: none; /* Remove outline on focus */
+}
+
+.file-input {
+    display: none; /* Hide the actual file input */
+}
+
+.file-label {
+    display: inline-block; /* Inline block for centering */
+    background: #f0f0f0; /* Light gray background */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding */
+    text-align: center; /* Center text */
+    color: #808080; /* Gray text color */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease; /* Transition for hover */
+}
+
+.file-label:hover {
+    background: #e0e0e0; /* Slightly darker on hover */
+}
