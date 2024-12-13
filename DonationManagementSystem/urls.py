@@ -20,9 +20,12 @@ from donation.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 from donation import views
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("",index,name="index"),
+    path("index.html", index, name="index_html"),
     path("all_logins",all_logins,name="all_logins"),
     path("donor_login",donor_login,name="donor_login"),
     path("ngo_login",ngo_login,name="ngo_login"),
@@ -42,6 +45,8 @@ urlpatterns = [
     path('donor_form/<int:ngo_id>/',donor_form, name='donor_form'),
     path("donation_history/", donation_history, name="donation_history"),
     path("donation/<int:donation_id>/", donation_detail, name="donation_detail"),
-
+    path('test-email/', test_email, name='test_email'),
+    path('forgot_password/', forgot_password, name='forgot_password'),
+    path('reset_password/<str:token>/', reset_password, name='reset_password'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

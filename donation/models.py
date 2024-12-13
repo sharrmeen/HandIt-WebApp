@@ -8,6 +8,8 @@ class Donor(models.Model):
     address = models.CharField(max_length=300,null=True)
     userpic = models.FileField(null=True)
     regdate = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField(null=True, blank=True)
+
     def __str__(self):
         return self.user.username
     
@@ -42,7 +44,8 @@ class NGO(models.Model):
     regdate = models.DateTimeField(auto_now_add=True)
     adminremark = models.CharField(null=True, max_length=300)
     updationdate = models.DateField(null=True)
-    city = models.ForeignKey(City, on_delete=models.CASCADE, null=False) 
+    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, blank=True) 
+    email = models.EmailField(unique=True, null=True, blank=True)
 
     category = models.ManyToManyField(Category, related_name='ngos')
     
