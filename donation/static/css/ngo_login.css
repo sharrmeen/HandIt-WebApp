@@ -1,339 +1,339 @@
 @font-face {
-    font-family: 'Metropolis';
-    src: url('../fonts/Metropolis/Metropolis-Regular.woff2') format('woff2'),
-        url('../fonts/Metropolis/Metropolis-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+font-family: 'Metropolis';
+src: url('../fonts/Metropolis/Metropolis-Regular.woff2') format('woff2'),
+url('../fonts/Metropolis/Metropolis-Regular.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+font-display: swap;
 }
 
 @font-face {
-    font-family: 'Metropolis';
-    src: url('../fonts/Metropolis/Metropolis-Light.woff2') format('woff2'),
-        url('../fonts/Metropolis/Metropolis-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
+font-family: 'Metropolis';
+src: url('../fonts/Metropolis/Metropolis-Light.woff2') format('woff2'),
+url('../fonts/Metropolis/Metropolis-Light.woff') format('woff');
+font-weight: 300;
+font-style: normal;
+font-display: swap;
 }
 
 @font-face {
-    font-family: 'Metropolis';
-    src: url('../fonts/Metropolis/Metropolis-SemiBold.woff2') format('woff2'),
-        url('../fonts/Metropolis/Metropolis-SemiBold.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
+font-family: 'Metropolis';
+src: url('../fonts/Metropolis/Metropolis-SemiBold.woff2') format('woff2'),
+url('../fonts/Metropolis/Metropolis-SemiBold.woff') format('woff');
+font-weight: 600;
+font-style: normal;
+font-display: swap;
 }
 
 @font-face {
-    font-family: 'Metropolis';
-    src: url('../fonts/Metropolis/Metropolis-Bold.woff2') format('woff2'),
-        url('../fonts/Metropolis/Metropolis-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+font-family: 'Metropolis';
+src: url('../fonts/Metropolis/Metropolis-Bold.woff2') format('woff2'),
+url('../fonts/Metropolis/Metropolis-Bold.woff') format('woff');
+font-weight: bold;
+font-style: normal;
+font-display: swap;
 }
 
 body {
-    font-family: "Metropolis";
-    margin: 0;
-    font-size: 15px;
-    color: #666;
+font-family: "Metropolis";
+margin: 0;
+font-size: 15px;
+color: #666;
 }
 
 * {
-    box-sizing: border-box;
+box-sizing: border-box;
 }
 
 h1, h2, h4, h5, h6, ul {
-    margin: 0;
+margin: 0;
 }
 
 ul {
-    padding-left: 0;
-    margin-bottom: 0;
+padding-left: 0;
+margin-bottom: 0;
 }
 
 a {
-    text-decoration: none;
+text-decoration: none;
 }
 
 input, textarea, select, button {
-    font-family: "Metropolis";
-    font-size: 15px;
-    color: #3c3c3c;
+font-family: "Metropolis";
+font-size: 15px;
+color: #3c3c3c;
 }
 
 textarea {
-    resize: none;
+resize: none;
 }
 
 :focus {
-    outline: none;
+outline: none;
 }
 
 .wrapper {
-    min-height: 100vh;
-    padding: 20px;
-    width: 100%;
-    display: flex;
-    padding-top: 70px;
-    padding-bottom: 70px;
-    background: url("../images/bg-image-handit.svg") no-repeat center center;
-    background-size: cover;
-    align-items: center;
-    justify-content: center;
+min-height: 100vh;
+padding: 20px;
+width: 100%;
+display: flex;
+padding-top: 70px;
+padding-bottom: 70px;
+background: url("../images/bg-image-handit.svg") no-repeat center center;
+background-size: cover;
+align-items: center;
+justify-content: center;
 }
 
 .inner {
-    display: flex;
-    width: 100%;
-    max-width: 700px;
-    min-height: 500px;
-    background: transparent !important;
-    backdrop-filter: blur(80px) !important;
-    margin: auto;
-    border-radius: 20px;
-    padding: 35px;
-    padding-bottom: 35px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    flex-direction: column; /* Stacks elements vertically on smaller screens */
-    align-items: center;
+display: flex;
+width: 100%;
+max-width: 700px;
+min-height: 500px;
+background: transparent !important;
+backdrop-filter: blur(80px) !important;
+margin: auto;
+border-radius: 20px;
+padding: 35px;
+padding-bottom: 35px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+flex-direction: column; /* Stacks elements vertically on smaller screens */
+align-items: center;
 }
 
 h2 {
-    font-size: 40px;
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    color: #5a6f80;
-    text-transform: uppercase;
-    font-family: "Metropolis";
+font-size: 40px;
+text-align: center;
+margin-top: 5px;
+margin-bottom: 5px;
+color: #5a6f80;
+text-transform: uppercase;
+font-family: "Metropolis";
 }
 
 .form-box {
-    padding-top: 42px;
-    width: 100%;
-    font-size: 30px;
-    text-align: center;
-    margin-bottom: 21px;
-    color: #5a6f80;
-    text-transform: uppercase;
-    font-family: "Metropolis";
+padding-top: 42px;
+width: 100%;
+font-size: 30px;
+text-align: center;
+margin-bottom: 21px;
+color: #5a6f80;
+text-transform: uppercase;
+font-family: "Metropolis";
 }
 
 .input-box {
-    position: relative;
-    width: 100%;
-    max-width: 100%; /* Ensures it doesn't exceed the container's width */
-    height: 50px;
-    margin: 30px auto;
-    display: flex;
-    border-bottom: 2px solid #5a6f80;
+position: relative;
+width: 100%;
+max-width: 100%; /* Ensures it doesn't exceed the container's width */
+height: 50px;
+margin: 30px auto;
+display: flex;
+border-bottom: 2px solid #5a6f80;
 }
 
 .input-box label {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    font-size: 16px;
-    color: #5a6f80;
-    font-weight: 500;
-    transition: .5s;
+position: absolute;
+top: 50%;
+left: 5px;
+transform: translateY(-50%);
+font-size: 16px;
+color: #5a6f80;
+font-weight: 500;
+transition: .5s;
 }
 
 .input-box input:focus~label,
 .input-box input:valid~label {
-    top: -5px;
+top: -5px;
 }
 
 .input-box input {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    color: #5a6f80;
-    font-weight: 600;
+width: 100%;
+height: 100%;
+background: transparent;
+border: none;
+outline: none;
+font-size: 16px;
+color: #5a6f80;
+font-weight: 600;
 }
 
 .input-box .icon {
-    position: absolute;
-    right: 8px;
-    font-size: 1.2em;
-    color: #5a6f80;
-    line-height: 57px;
+position: absolute;
+right: 8px;
+font-size: 1.2em;
+color: #5a6f80;
+line-height: 57px;
 }
 
 .remember-forgot a:hover {
-    text-decoration: underline;
+text-decoration: underline;
 }
 
 .btn {
-    height: 47px;
-    width: 100%;
-    max-width: 600px;
-    background-color: #5a6f80;
-    color: white;
-    border: none;
-    border-radius: 23.7px;
-    font-family: "Metropolis";
-    font-size: 20px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    display: block;
-    margin-top: 40px;
+height: 47px;
+width: 100%;
+max-width: 600px;
+background-color: #5a6f80;
+color: white;
+border: none;
+border-radius: 23.7px;
+font-family: "Metropolis";
+font-size: 20px;
+text-transform: uppercase;
+cursor: pointer;
+transition: background-color 0.3s ease, color 0.3s ease;
+display: block;
+margin-top: 40px;
 }
 
 .btn:hover {
-    background-color: #5bc1ac;
+background-color: #5bc1ac;
 }
 
 .login-register {
-    font-size: 15px;
-    color: #5a6f80;
-    text-align: center;
-    margin: 25px auto 10px;
+font-size: 15px;
+color: #5a6f80;
+text-align: center;
+margin: 25px auto 10px;
 }
 
 .login-register p {
-    margin: 0;
+margin: 0;
 }
 
 .login-register a {
-    color: #5a6f80;
-    text-decoration: none;
-    font-weight: 600;
+color: #5a6f80;
+text-decoration: none;
+font-weight: 600;
 }
 
 .login-register a:hover {
-    text-decoration: underline;
+text-decoration: underline;
 }
 
 .forgot-password {
-    font-size: 15px !important;
-    color: #5a6f80 !important;
-    margin-left: 0;
-    margin: 25px 0 10px;
+font-size: 15px !important;
+color: #5a6f80 !important;
+margin-left: 0;
+margin: 25px 0 10px;
 }
 
 /* Specifically target <a> within .forgot-password */
 .forgot-password a {
-    color: #5a6f80 !important; /* Ensures the link text color is the same */
-    text-decoration: none; /* Remove default underline */
-    position: relative; /* Necessary for the underline effect */
-    display: inline-block; /* Ensures the anchor behaves like an inline element */
-    padding-bottom: 2px; /* Optional: space between text and underline */
-    transition: color 0.3s ease; /* Smooth color transition */
+color: #5a6f80 !important; /* Ensures the link text color is the same */
+text-decoration: none; /* Remove default underline */
+position: relative; /* Necessary for the underline effect */
+display: inline-block; /* Ensures the anchor behaves like an inline element */
+padding-bottom: 2px; /* Optional: space between text and underline */
+transition: color 0.3s ease; /* Smooth color transition */
 }
 
 /* Underline effect on hover */
 .forgot-password a::after {
-    content: ''; /* Creates the underline */
-    position: absolute;
-    bottom: 0; /* Position it right under the text */
-    left: 50%; /* Start from the center */
-    width: 0;
-    height: 1px;
-    background-color: #5a6f80; /* Underline color */
-    transition: width 0.3s ease, left 0.3s ease; /* Smooth transition for width and left */
+content: ''; /* Creates the underline */
+position: absolute;
+bottom: 0; /* Position it right under the text */
+left: 50%; /* Start from the center */
+width: 0;
+height: 1px;
+background-color: #5a6f80; /* Underline color */
+transition: width 0.3s ease, left 0.3s ease; /* Smooth transition for width and left */
 }
 
 /* Show the underline on hover */
 .forgot-password a:hover::after {
-    width: 100%; /* Expands the underline to full width */
-    left: 0; /* Move the starting point to the left to spread to both ends */
+width: 100%; /* Expands the underline to full width */
+left: 0; /* Move the starting point to the left to spread to both ends */
 }
 
 /* Optional: Change the text color on hover */
 .forgot-password a:hover {
-    color: #5bc1ac; /* Example: change color when hovered */
+color: #5bc1ac; /* Example: change color when hovered */
 }
 
 
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-    body {
-        font-size: 14px;
-    }
+body {
+font-size: 14px;
+}
 
-    .wrapper {
-        padding: 20px 10px;
-    }
+.wrapper {
+padding: 20px 10px;
+}
 
-    .inner {
-        max-width: 90%;
-        padding: 20px;
-    }
+.inner {
+max-width: 90%;
+padding: 20px;
+}
 
-    h2 {
-        font-size: 30px;
-        margin-left: 0;
-    }
+h2 {
+font-size: 30px;
+margin-left: 0;
+}
 
-    .form-box {
-        font-size: 25px;
-    }
+.form-box {
+font-size: 25px;
+}
 
-    .input-box {
-        width: 100%; /* Ensures full-width on smaller screens */
-        margin: 20px 0; /* Adjust margin for smaller screens */
-    }
+.input-box {
+width: 100%; /* Ensures full-width on smaller screens */
+margin: 20px 0; /* Adjust margin for smaller screens */
+}
 
 
-    .btn {
-        max-width: 100%;
-        margin-top: 30px;
-    }
+.btn {
+max-width: 100%;
+margin-top: 30px;
+}
 
-    .login-register {
-        font-size: 14px;
-        margin-top: 15px;
-    }
+.login-register {
+font-size: 14px;
+margin-top: 15px;
+}
 
-    .login-register a {
-        font-size: 14px;
-    }
+.login-register a {
+font-size: 14px;
+}
 
-    .forgot-password {
-        font-size: 14px;
-        margin-left: 0;
-    }
+.forgot-password {
+font-size: 14px;
+margin-left: 0;
+}
 }
 
 @media (max-width: 480px) {
-    .btn {
-        font-size: 18px;
-        height: 40px;
-    }
+.btn {
+font-size: 18px;
+height: 40px;
+}
 
-    h2 {
-        font-size: 26px;
-    }
+h2 {
+font-size: 26px;
+}
 
-    .form-box {
-        font-size: 22px;
-    }
+.form-box {
+font-size: 22px;
+}
 
-    .input-box {
-        height: 45px;
-        width: 100%; /* Full width on small mobile screens */
-        margin: 15px 0; /* Adjust margin for small mobile screens */
-    }
+.input-box {
+height: 45px;
+width: 100%; /* Full width on small mobile screens */
+margin: 15px 0; /* Adjust margin for small mobile screens */
+}
 
-    .input-box input {
-        font-size: 14px;
-    }
+.input-box input {
+font-size: 14px;
+}
 
-    .input-box label {
-        font-size: 14px;
-    }
+.input-box label {
+font-size: 14px;
+}
 
-    .login-register a {
-        font-size: 13px;
-    }
+.login-register a {
+font-size: 13px;
+}
 }
