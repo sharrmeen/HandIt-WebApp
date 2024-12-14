@@ -340,35 +340,45 @@ def donation_detail(request, donation_id):
     donation = get_object_or_404(Donation, id=donation_id)
     return render(request, 'donation_detail.html', {'donation': donation})
 
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.auth.tokens import default_token_generator as token_generator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+
+token_generator = PasswordResetTokenGenerator()
+
 def forgot_password(request):
     if request.method == 'POST':
         email = request.POST['email']
         try:
-            user = User.objects.get(email=email)
-            # Generate a unique token
-            token = uuid.uuid4()
-            # Send email with the reset link
-            reset_link = request.build_absolute_uri(reverse('reset_password', kwargs={'token': token}))
+            user = User.objects.get(username=email)
+            # Generate token and encode user ID
+            token = token_generator.make_token(user)
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            reset_link = request.build_absolute_uri(reverse('reset_password', kwargs={'uid': uid, 'token': token}))
             subject = "Password Reset Request"
-            message = render_to_string('forgot_password_email.html', {'reset_link': reset_link})
-            send_mail(subject, message, 'your_email@example.com', [email])  # Change to your email
+            message = render_to_string('forgot_password_email.txt', {'reset_link': reset_link})
+            send_mail(subject, message, 'handit.pvt.ltd@gmail.com', [email])
             messages.success(request, "Password reset link sent to your email.")
-            return redirect('forgot_password')  # Redirect to the same page after sending email
+            return redirect('forgot_password')
         except User.DoesNotExist:
             messages.error(request, "No user found with this email address.")
     return render(request, 'forgot_password.html')
 
-
-def reset_password(request, token):
-    if request.method == 'POST':
-        new_password = request.POST['new_password']
-        email = request.POST['email']  # Ensure to get email
-        try:
-            user = User.objects.get(email=email)
-            user.set_password(new_password)
-            user.save()
-            messages.success(request, "Your password has been reset successfully.")
-            return redirect('ngo_login')  # Redirect to login page after password reset
-        except User.DoesNotExist:
-            messages.error(request, "Invalid token.")
-    return render(request, 'reset_password.html', {'token': token})
+def reset_password(request, uid, token):
+    try:
+        user_id = force_str(urlsafe_base64_decode(uid))
+        user = User.objects.get(pk=user_id)
+        if token_generator.check_token(user, token):
+            if request.method == 'POST':
+                new_password = request.POST['new_password']
+                user.set_password(new_password)
+                user.save()
+                messages.success(request, "Your password has been reset successfully.")
+                return redirect('ngo_login')
+            return render(request, 'reset_password.html', {'valid': True})
+        else:
+            messages.error(request, "Invalid or expired reset token.")
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        messages.error(request, "Invalid reset request.")
+    return render(request, 'reset_password.html', {'valid': False})

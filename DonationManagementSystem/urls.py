@@ -47,6 +47,7 @@ urlpatterns = [
     path("donation/<int:donation_id>/", donation_detail, name="donation_detail"),
     path('test-email/', test_email, name='test_email'),
     path('forgot_password/', forgot_password, name='forgot_password'),
-    path('reset_password/<str:token>/', reset_password, name='reset_password'),
+    path('reset_password/<str:uid>/<str:token>/', reset_password, name='reset_password'),
+
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
