@@ -1,0 +1,252 @@
+@font-face {
+    font-family: 'Metropolis';
+    src: url("../fonts/Metropolis/Metropolis-Regular.f94100864838.woff2") format('woff2'),
+        url("../fonts/Metropolis/Metropolis-Regular.867ae290b266.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Metropolis';
+    src: url("../fonts/Metropolis/Metropolis-Light.d0f9816d3bd9.woff2") format('woff2'),
+        url("../fonts/Metropolis/Metropolis-Light.ed49461a0796.woff") format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Metropolis';
+    src: url("../fonts/Metropolis/Metropolis-SemiBold.d731fbae4bde.woff2") format('woff2'),
+        url("../fonts/Metropolis/Metropolis-SemiBold.598f348de6e3.woff") format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Metropolis';
+    src: url("../fonts/Metropolis/Metropolis-Bold.2a2d4461c922.woff2") format('woff2'),
+        url("../fonts/Metropolis/Metropolis-Bold.7807d92adbb7.woff") format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+body {
+    font-family: "Metropolis";
+    margin: 0;
+    font-size: 15px;
+    color: #666;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+ h1, h2, h4, h5, h6, ul {
+    margin: 0;
+}
+
+ul {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+input, textarea, select, button {
+    font-family: "Metropolis";
+    font-size: 15px;
+    color: #3c3c3c;
+}
+
+textarea {
+    resize: none;
+}
+
+:focus {
+    outline: none;
+}
+
+
+.wrapper {
+    min-height: 100vh;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background: url("../images/bg-image-handit.52864a94ff14.svg") no-repeat center center;
+    background-size: cover;
+    align-items: center;
+}
+
+/* .inner {
+    width: 100%;
+    max-width: 800px;
+    min-height: 500px;
+    background: transparent !important;
+    backdrop-filter: blur(80px) !important;
+    margin: auto;
+    display: flex;
+    border-radius: 20px;
+    padding: 35px;
+    padding-bottom: 35px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+} */
+
+.inner {
+    display: flex; 
+    width: 100%;
+
+    max-width: 700px;
+    min-height: 500px;
+    background: transparent !important;
+    backdrop-filter: blur(80px) !important;
+    margin: auto;
+    border-radius: 20px;
+    padding: 35px;
+    padding-bottom: 35px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    font-size: 40px;
+    text-align: center;
+    align-items:flex-end;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 200px;
+    color: #5a6f80;
+    text-transform: uppercase;
+    font-family: "Metropolis";
+}
+
+
+
+.form-box {
+    padding-top: 42px;
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 21px;
+    color: #5a6f80;
+    text-transform: uppercase;
+    font-family: "Metropolis";
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 50px;
+    margin: 30px auto; /* Centers horizontally */
+    display: flex;
+    margin-left: 100px;
+    border-bottom: 2px solid #5a6f80;
+}
+
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #5a6f80;
+    font-weight: 500;
+    transition: .5s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px;
+
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #5a6f80;
+    font-weight: 600;
+
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #5a6f80;
+    line-height: 57px;
+}
+
+
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    height: 47px;
+    width: 100%;
+    background-color: #5a6f80;
+    color: white;
+    border: none;
+    border-radius: 23.7px;
+    font-family: "Metropolis";
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.btn:hover {
+    background-color: #5bc1ac;
+}
+
+.login-register {
+    font-size: 15px;
+    color: #5a6f80;
+    margin-left: 100px;
+    margin: 25px 0 10px;
+
+}
+
+.login-register p {
+    
+    margin-left: 200px;
+}
+
+.login-register a {
+    color: #5a6f80;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 600;
+
+}
+
+.login-register a:hover {
+    text-decoration: underline;
+}
+
+.forgot-password {
+    font-size: 15px !important;
+    color: #5a6f80;
+    margin-left: 150px;
+    margin: 25px 0 10px;
+}
