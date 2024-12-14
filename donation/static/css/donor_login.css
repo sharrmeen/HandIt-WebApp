@@ -201,29 +201,27 @@ h2 {
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     display: block;
-    margin: 30px auto;
-    margin-top: 30px;
+    margin: 50px auto 30px;  /* Adjusted margin-top to move button further down */
 }
 
 .btn:hover {
     background-color: #5bc1ac;
 }
 
-
 .login-register {
     font-size: 15px;
     color: #5a6f80;
-    margin-left: 100px;
-    margin: 25px 0 10px;
+    text-align: center;  /* Center the text horizontally */
+    margin: 50px auto 10px;  /* Adjusted margin-top to move Register link further down */
 }
 
 .login-register p {
-    margin-left: 150px;
+    margin: 0;  /* Remove extra margin for the paragraph */
+    text-align: center;  /* Center the text inside the paragraph */
 }
 
 .login-register a {
     color: #5a6f80;
-    align-items: center;
     text-decoration: none;
     font-weight: 600;
 }
@@ -231,6 +229,7 @@ h2 {
 .login-register a:hover {
     text-decoration: underline;
 }
+
 
 /* Media Queries for Responsiveness */
 
