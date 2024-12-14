@@ -371,4 +371,4 @@ def reset_password(request, token):
             return redirect('ngo_login')  # Redirect to login page after password reset
         except User.DoesNotExist:
             messages.error(request, "Invalid token.")
-    return render(request, 'reset_password.html', {'token': token})
+    return render(request, 'reset_password.html', {'token': token},)
