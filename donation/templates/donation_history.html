@@ -97,7 +97,7 @@
                             <tr>
                                 <th>Sr. No.</th>
                                 <th>Donor Name</th>
-                                <th>Donation Type</th> <!-- New Column for Donation Type -->
+                                {% comment %} <th>Donation Type</th> <!-- New Column for Donation Type --> {% endcomment %}
                                 <th>Donation Date</th>
                                 <th>Status</th>
                                 <th>Action</th> 
@@ -108,7 +108,7 @@
                             <tr>
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ i.donationname }}</td>
-                                <td>{{ i.donation_type }}</td> <!-- Display Donation Type -->
+                                {% comment %} <td>{{ i.donation_type }}</td> <!-- Display Donation Type --> {% endcomment %}
                                 <td>{{ i.Donationdate|date:"Y-m-d H:i:s" }}</td> <!-- Formatting the date -->
                                 <td>{{ i.status }}</td>
                                 <td><a href="{% url 'donation_detail' i.id %}" class="text-primary">View Details</a></td> <!-- Link to Donation Detail -->
