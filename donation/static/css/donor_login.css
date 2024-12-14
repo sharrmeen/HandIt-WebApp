@@ -34,7 +34,6 @@
     font-display: swap;
 }
 
-
 body {
     font-family: "Metropolis";
     margin: 0;
@@ -46,7 +45,7 @@ body {
     box-sizing: border-box;
 }
 
- h1, h2, h4, h5, h6, ul {
+h1, h2, h4, h5, h6, ul {
     margin: 0;
 }
 
@@ -58,7 +57,6 @@ ul {
 a {
     text-decoration: none;
 }
-
 
 input, textarea, select, button {
     font-family: "Metropolis";
@@ -74,17 +72,18 @@ textarea {
     outline: none;
 }
 
-
 .wrapper {
     min-height: 100vh;
     padding: 20px;
     width: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Vertically center the content */
+    align-items: center;  /* Horizontally center the content */
     padding-top: 70px;
     padding-bottom: 70px;
     background: url("../images/bg-image-handit.svg") no-repeat center center;
     background-size: cover;
-    align-items: center;
 }
 
 /* .inner {
@@ -104,7 +103,6 @@ textarea {
 .inner {
     display: flex; 
     width: 100%;
-
     max-width: 700px;
     min-height: 500px;
     background: transparent !important;
@@ -114,22 +112,21 @@ textarea {
     padding: 35px;
     padding-bottom: 35px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    flex-direction: column;  /* Stack elements vertically */
 }
 
 h2 {
     font-size: 40px;
     text-align: center;
-    align-items:flex-end;
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 150px;
+    margin-left: 0;  /* Centered horizontally */
     color: #5a6f80;
     text-transform: uppercase;
     font-family: "Metropolis";
 }
 
-
-
+/* Adjusting form box text size and layout for smaller screens */
 .form-box {
     padding-top: 42px;
     width: 100%;
@@ -144,21 +141,19 @@ h2 {
 .input-box {
     position: relative;
     width: 100%;
-    max-width: 1000px;
-    height: 50px;
+    max-width: 500px;  /* Smaller width for the input box */
+    height: 40px;  /* Reduced height */
     margin: 30px auto; /* Centers horizontally */
     display: flex;
-    margin-left: 80px;
     border-bottom: 2px solid #5a6f80;
 }
-
 
 .input-box label {
     position: absolute;
     top: 50%;
     left: 5px;
     transform: translateY(-50%);
-    font-size: 16px;
+    font-size: 14px;  /* Smaller font size */
     color: #5a6f80;
     font-weight: 500;
     transition: .5s;
@@ -167,7 +162,6 @@ h2 {
 .input-box input:focus~label,
 .input-box input:valid~label {
     top: -5px;
-
 }
 
 .input-box input {
@@ -176,10 +170,9 @@ h2 {
     background: transparent;
     border: none;
     outline: none;
-    font-size: 16px;
+    font-size: 14px;  /* Reduced font size */
     color: #5a6f80;
     font-weight: 600;
-
 }
 
 .input-box .icon {
@@ -190,8 +183,6 @@ h2 {
     line-height: 57px;
 }
 
-
-
 .remember-forgot a:hover {
     text-decoration: underline;
 }
@@ -199,6 +190,7 @@ h2 {
 .btn {
     height: 47px;
     width: 100%;
+    max-width: 600px;  /* Limit the max width to make it consistent with the input box */
     background-color: #5a6f80;
     color: white;
     border: none;
@@ -209,26 +201,23 @@ h2 {
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     display: block;
-    align-items: center;
-    justify-content: center;
-    margin-top: 100px;
-    margin-left: 80px;
+    margin: 30px auto;
+    margin-top: 30px;
 }
 
 .btn:hover {
     background-color: #5bc1ac;
 }
 
+
 .login-register {
     font-size: 15px;
     color: #5a6f80;
     margin-left: 100px;
     margin: 25px 0 10px;
-
 }
 
 .login-register p {
-    
     margin-left: 150px;
 }
 
@@ -237,9 +226,91 @@ h2 {
     align-items: center;
     text-decoration: none;
     font-weight: 600;
-
 }
 
 .login-register a:hover {
     text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For screens smaller than 768px (tablets and smaller) */
+@media screen and (max-width: 768px) {
+    .wrapper {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .inner {
+        padding: 30px;
+        max-width: 90%;
+    }
+
+    h2 {
+        font-size: 30px;
+        margin-left: 0;
+    }
+
+    .form-box {
+        font-size: 24px;
+    }
+
+    .input-box {
+        margin-left: 30px;
+        max-width: 400px;  /* Further reduce the input box size */
+    }
+
+    .btn {
+        margin-left: 20px;
+        font-size: 18px;
+    }
+
+    .login-register {
+        font-size: 14px;
+        margin-left: 20px;
+    }
+
+    .login-register p {
+        margin-left: 20px;
+    }
+}
+
+/* For screens smaller than 480px (mobile phones) */
+@media screen and (max-width: 480px) {
+    .wrapper {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .inner {
+        padding: 15px;
+        max-width: 95%;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .form-box {
+        font-size: 20px;
+    }
+
+    .input-box {
+        margin-left: 10px;
+        max-width: 300px;  /* Much smaller input box */
+    }
+
+    .btn {
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .login-register {
+        font-size: 12px;
+        margin-left: 10px;
+    }
+
+    .login-register p {
+        margin-left: 10px;
+    }
 }
