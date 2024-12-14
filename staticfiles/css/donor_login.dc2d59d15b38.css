@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Metropolis';
-    src: url('../fonts/Metropolis/Metropolis-Regular.woff2') format('woff2'),
-        url('../fonts/Metropolis/Metropolis-Regular.woff') format('woff');
+    src: url("../fonts/Metropolis/Metropolis-Regular.f94100864838.woff2") format('woff2'),
+        url("../fonts/Metropolis/Metropolis-Regular.867ae290b266.woff") format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -9,8 +9,8 @@
 
 @font-face {
     font-family: 'Metropolis';
-    src: url('../fonts/Metropolis/Metropolis-Light.woff2') format('woff2'),
-        url('../fonts/Metropolis/Metropolis-Light.woff') format('woff');
+    src: url("../fonts/Metropolis/Metropolis-Light.d0f9816d3bd9.woff2") format('woff2'),
+        url("../fonts/Metropolis/Metropolis-Light.ed49461a0796.woff") format('woff');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -18,8 +18,8 @@
 
 @font-face {
     font-family: 'Metropolis';
-    src: url('../fonts/Metropolis/Metropolis-SemiBold.woff2') format('woff2'),
-        url('../fonts/Metropolis/Metropolis-SemiBold.woff') format('woff');
+    src: url("../fonts/Metropolis/Metropolis-SemiBold.d731fbae4bde.woff2") format('woff2'),
+        url("../fonts/Metropolis/Metropolis-SemiBold.598f348de6e3.woff") format('woff');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -27,8 +27,8 @@
 
 @font-face {
     font-family: 'Metropolis';
-    src: url('../fonts/Metropolis/Metropolis-Bold.woff2') format('woff2'),
-        url('../fonts/Metropolis/Metropolis-Bold.woff') format('woff');
+    src: url("../fonts/Metropolis/Metropolis-Bold.2a2d4461c922.woff2") format('woff2'),
+        url("../fonts/Metropolis/Metropolis-Bold.7807d92adbb7.woff") format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -82,7 +82,7 @@ textarea {
     align-items: center;  /* Horizontally center the content */
     padding-top: 70px;
     padding-bottom: 70px;
-    background: url("../images/bg-image-handit.svg") no-repeat center center;
+    background: url("../images/bg-image-handit.52864a94ff14.svg") no-repeat center center;
     background-size: cover;
 }
 
