@@ -34,7 +34,6 @@
     font-display: swap;
 }
 
-
 body {
     font-family: "Metropolis";
     margin: 0;
@@ -46,7 +45,7 @@ body {
     box-sizing: border-box;
 }
 
- h1, h2, h4, h5, h6, ul {
+h1, h2, h4, h5, h6, ul {
     margin: 0;
 }
 
@@ -58,7 +57,6 @@ ul {
 a {
     text-decoration: none;
 }
-
 
 input, textarea, select, button {
     font-family: "Metropolis";
@@ -74,7 +72,6 @@ textarea {
     outline: none;
 }
 
-
 .wrapper {
     min-height: 100vh;
     padding: 20px;
@@ -85,26 +82,12 @@ textarea {
     background: url("../images/bg-image-handit.svg") no-repeat center center;
     background-size: cover;
     align-items: center;
+    justify-content: center;
 }
 
-/* .inner {
-    width: 100%;
-    max-width: 800px;
-    min-height: 500px;
-    background: transparent !important;
-    backdrop-filter: blur(80px) !important;
-    margin: auto;
-    display: flex;
-    border-radius: 20px;
-    padding: 35px;
-    padding-bottom: 35px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-} */
-
 .inner {
-    display: flex; 
+    display: flex;
     width: 100%;
-
     max-width: 700px;
     min-height: 500px;
     background: transparent !important;
@@ -114,21 +97,19 @@ textarea {
     padding: 35px;
     padding-bottom: 35px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    flex-direction: column; /* Stacks elements vertically on smaller screens */
+    align-items: center;
 }
 
 h2 {
     font-size: 40px;
     text-align: center;
-    align-items:flex-end;
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-left: 200px;
     color: #5a6f80;
     text-transform: uppercase;
     font-family: "Metropolis";
 }
-
-
 
 .form-box {
     padding-top: 42px;
@@ -144,14 +125,12 @@ h2 {
 .input-box {
     position: relative;
     width: 100%;
-    max-width: 1000px;
+    max-width: 100%; /* Ensures it doesn't exceed the container's width */
     height: 50px;
-    margin: 30px auto; /* Centers horizontally */
+    margin: 30px auto;
     display: flex;
-    margin-left: 100px;
     border-bottom: 2px solid #5a6f80;
 }
-
 
 .input-box label {
     position: absolute;
@@ -167,7 +146,6 @@ h2 {
 .input-box input:focus~label,
 .input-box input:valid~label {
     top: -5px;
-
 }
 
 .input-box input {
@@ -179,7 +157,6 @@ h2 {
     font-size: 16px;
     color: #5a6f80;
     font-weight: 600;
-
 }
 
 .input-box .icon {
@@ -190,8 +167,6 @@ h2 {
     line-height: 57px;
 }
 
-
-
 .remember-forgot a:hover {
     text-decoration: underline;
 }
@@ -199,6 +174,7 @@ h2 {
 .btn {
     height: 47px;
     width: 100%;
+    max-width: 600px;
     background-color: #5a6f80;
     color: white;
     border: none;
@@ -209,10 +185,7 @@ h2 {
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     display: block;
-    align-items: center;
-    justify-content: center;
-    margin-top: 100px;
-    margin-left: 100px;
+    margin-top: 40px;
 }
 
 .btn:hover {
@@ -222,22 +195,18 @@ h2 {
 .login-register {
     font-size: 15px;
     color: #5a6f80;
-    margin-left: 100px;
-    margin: 25px 0 10px;
-
+    text-align: center;
+    margin: 25px auto 10px;
 }
 
 .login-register p {
-    
-    margin-left: 200px;
+    margin: 0;
 }
 
 .login-register a {
     color: #5a6f80;
-    align-items: center;
     text-decoration: none;
     font-weight: 600;
-
 }
 
 .login-register a:hover {
@@ -246,7 +215,125 @@ h2 {
 
 .forgot-password {
     font-size: 15px !important;
-    color: #5a6f80;
-    margin-left: 150px;
+    color: #5a6f80 !important;
+    margin-left: 0;
     margin: 25px 0 10px;
+}
+
+/* Specifically target <a> within .forgot-password */
+.forgot-password a {
+    color: #5a6f80 !important; /* Ensures the link text color is the same */
+    text-decoration: none; /* Remove default underline */
+    position: relative; /* Necessary for the underline effect */
+    display: inline-block; /* Ensures the anchor behaves like an inline element */
+    padding-bottom: 2px; /* Optional: space between text and underline */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Underline effect on hover */
+.forgot-password a::after {
+    content: ''; /* Creates the underline */
+    position: absolute;
+    bottom: 0; /* Position it right under the text */
+    left: 50%; /* Start from the center */
+    width: 0;
+    height: 1px;
+    background-color: #5a6f80; /* Underline color */
+    transition: width 0.3s ease, left 0.3s ease; /* Smooth transition for width and left */
+}
+
+/* Show the underline on hover */
+.forgot-password a:hover::after {
+    width: 100%; /* Expands the underline to full width */
+    left: 0; /* Move the starting point to the left to spread to both ends */
+}
+
+/* Optional: Change the text color on hover */
+.forgot-password a:hover {
+    color: #5bc1ac; /* Example: change color when hovered */
+}
+
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .wrapper {
+        padding: 20px 10px;
+    }
+
+    .inner {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 30px;
+        margin-left: 0;
+    }
+
+    .form-box {
+        font-size: 25px;
+    }
+
+    .input-box {
+        width: 100%; /* Ensures full-width on smaller screens */
+        margin: 20px 0; /* Adjust margin for smaller screens */
+    }
+
+
+    .btn {
+        max-width: 100%;
+        margin-top: 30px;
+    }
+
+    .login-register {
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+    .login-register a {
+        font-size: 14px;
+    }
+
+    .forgot-password {
+        font-size: 14px;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        font-size: 18px;
+        height: 40px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    .form-box {
+        font-size: 22px;
+    }
+
+    .input-box {
+        height: 45px;
+        width: 100%; /* Full width on small mobile screens */
+        margin: 15px 0; /* Adjust margin for small mobile screens */
+    }
+
+    .input-box input {
+        font-size: 14px;
+    }
+
+    .input-box label {
+        font-size: 14px;
+    }
+
+    .login-register a {
+        font-size: 13px;
+    }
 }
